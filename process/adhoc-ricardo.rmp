@@ -16,7 +16,7 @@
         <parameter key="repository_entry" value="../data/T_PRESENCAS"/>
       </operator>
       <operator activated="true" class="retrieve" compatibility="8.1.001" expanded="true" height="68" name="Retrieve T_AULAS_SEMANA" width="90" x="45" y="289">
-        <parameter key="repository_entry" value="//ECProject/data/T_AULAS_SEMANA"/>
+        <parameter key="repository_entry" value="../data/T_AULAS_SEMANA"/>
       </operator>
       <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join" width="90" x="179" y="238">
         <parameter key="remove_double_attributes" value="true"/>
