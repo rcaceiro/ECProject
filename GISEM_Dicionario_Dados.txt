@@ -1,0 +1,161 @@
+Dicionário de Dados do GISEM
+
+T_AULAS
+Nome do Atributo	Descrição          
+-------------------	-------------------------------------------------------------------
+ID					ID da aula   
+DIASEMANA   		Dia da semana em que se realiza a aula  
+HORAINICIO	 		Hora de início da aula 
+HORAFIM		   		Hora de fim da aula
+SALA				Sala onde vai ocorrer a aula
+SEMANAS				Semanas do período letivo e que a aula vai ocorrer
+PROFESSOR			Professor que vai lecionar a aula
+TURNO_ID			ID do turno a que está associada a aula
+SRC_LAST_CHANGED	Data/hora de inserção ou atualização do registo
+
+T_AULAS_SEMANA
+Nome do Atributo	Descrição     
+-------------------	-------------------------------------------------------------------
+ID					ID da aula semanal
+SEMANA				Semana a que diz respeito a aula   
+DIASEMANA   		Dia da semana em que se realiza a aula  
+HORAINICIO	 		Hora de início da aula 
+HORAFIM		   		Hora de fim da aula
+SALA				Sala onde vai ocorrer a aula
+DIA					Dia do mês em que se realiza a aula
+MES					Mês em que se realiza a aula
+ANO_CIVIL			Ano civil em que se realiza a aula
+TURNO_ID			ID do turno a que está associada a aula
+PROF_ID				ID do professor que leciona a aula
+MARCOU_PRESENCA		Indica se foram marcadas presenças na aula
+NUM_PRESENCAS		Número de presenças na aula
+AULA_CANCELADA		Indica se a aula foi cancelada
+SRC_LAST_CHANGED	Data/hora de inserção ou atualização do registo
+
+T_PRESENCAS
+Nome do Atributo	Descrição 
+-------------------	--------------------------------------------------------------------
+ID		 			ID da presença 
+AULA_SEMANA_ID		ID da aula semanal a que está associada a presença  
+USER_ID  			ID do utilizador
+PRESENTE			Indica se o estudante esteve presente na aula (0=Não; 1=Sim)
+SRC_LAST_CHANGED	Data/hora de inserção ou atualização do registo
+
+T_SETTINGS
+Nome do Atributo	Descrição        
+------------------- ----------------------------------------------------------------
+ID	        		ID da configurações semestrais do GISEM   
+ANOLECTIVO     		Ano letivo 
+SEMESTRE	   		Semestre do ano letivo
+PERMITIRTROCAS 		Indica se são permitidas trocas de turmas/turnos  
+SRC_LAST_CHANGED	Data/hora de inserção ou atualização do registo 
+
+T_TROCAS
+Nome do Atributo	Descrição 
+-------------------	--------------------------------------------------------------------
+ID	    			ID da troca de turno   
+ANOLECTIVO 			Ano letivo 
+SEMESTRE   			Semestre do ano letivo  
+USER_SENDER			ID do utilizador que solicitou a troca
+TURNO_ID_CORRENTE	ID do turno corrente do utilizador que solicitou a troca   
+USER_RECEIVER		ID do utilizador destinatário da troca
+TURNO_ID_PRETENDIDO	ID do turno pretendido pelo utilizador que solicitou a troca  
+ESTADOTROCA			Estado da troca (troca efetuada => 1; troca cancelada => -2)
+TROCAGLOBAL			Se a troca é global (qualquer estudante pode aceitar a troca => 1) ou específica (envolve apenas dois estudantes => 0)
+CREATED_AT 			Data/hora de inserção do registo  
+UPDATED_AT			Data/hora de atualização do registo  
+
+T_TROCAS_TURMA
+Nome do Atributo	Descrição 
+------------------- --------------------------------------------------------------------
+ID	    			ID da troca de turma   
+ANOLECTIVO 			Ano letivo 
+SEMESTRE   			Semestre do ano letivo  
+USER_SENDER			ID do utilizador que solicitou a troca
+TURMA_ID_CORRENTE	ID da turma corrente do utilizador que solicitou a troca   
+USER_RECEIVER		ID do utilizador destinatário da troca
+TURMA_ID_PRETENDIDA	ID da turma pretendida pelo utilizador que solicitou a troca  
+ESTADOTROCA			Estado da troca (troca efetuada => 1; troca cancelada => -2)
+TROCAGLOBAL			Se a troca é global (qualquer estudante pode aceitar a troca => 1) ou específica (envolve apenas dois estudantes => 0)
+CREATED_AT 			Data/hora de inserção do registo  
+UPDATED_AT			Data/hora de atualização do registo  
+
+T_TURMA_TURNO
+Nome do Atributo	Descrição        
+------------------- ----------------------------------------------------------------------
+TURMA_ID 			ID da turma  
+TURNO_ID 			ID do turno  
+SRC_LAST_CHANGED	Data/hora de inserção ou atualização do registo
+
+T_TURMAS
+Nome do Atributo	Descrição 
+------------------- ----------------------------------------------------------------------
+ID	    			ID da turma   
+ANOLECTIVO 			Ano letivo 
+SEMESTRE   			Semestre do ano letivo  
+NOME				Nome da turma
+DESCRICAO			Descrição da turma
+NUMESTUDANTES		Número de estudantes da turma
+RAMO				Ramo do curso
+SRC_LAST_CHANGED	Data/hora de inserção ou atualização do registo
+
+T_TURNO_USER
+Nome do Atributo	Descrição 
+------------------- -----------------------------------------------------------------------
+USER_ID 			ID do utilizador  
+TURNO_ID 			ID do turno 
+SRC_LAST_CHANGED	Data/hora de inserção ou atualização do registo
+
+T_TURNOS
+Nome do Atributo	Descrição 
+------------------- -----------------------------------------------------------------------
+ID	    			ID do turno   
+ANOLECTIVO 			Ano letivo 
+NOMEUC   			Nome da unidade curricular  
+REGIMEUC			Regime de funcionamento da unidade curricular
+ABREVUC				Abreviatura da unidade curricular   
+ANOUC				Ano da unidade curricular no plano curricular do curso
+SEMESTREUC			Semestre da unidade curricular  
+RAMOUC				Ramo do curso a que pertence a unidade curricular  
+TURNOUC				Turno da unidade curricular  
+MAX_ALUNOS 			Número máximo de alunos previsto para o turno da unidade curricular  
+TIPOTURNO			Tipo de turno 
+UC_ID				ID da unidade curricular
+SRC_LAST_CHANGED	Data/hora de inserção ou atualização do registo
+
+T_UC_USER
+Nome do Atributo	Descrição 
+------------------- ----------------------------------------------------------------------
+USER_ID 			ID do utilizador  
+UC_ID 				ID da unidade curricular 
+SRC_LAST_CHANGED	Data/hora de inserção ou atualização do registo
+
+T_UCS
+Nome do Atributo	Descrição 
+------------------- -------------------------------------------------------------------------
+ID	    			ID da unidade curricular   
+NOMEUC   			Nome da unidade curricular  
+ABREVUC				Abreviatura da unidade curricular  
+ANOUC				Ano da unidade curricular no plano curricular do curso
+SEMESTREUC			Semestre da unidade curricular  
+RAMOUC				Ramo do curso a que pertence a unidade curricular  
+SRC_LAST_CHANGED	Data/hora de inserção ou atualização do registo
+
+T_USERS
+Nome do Atributo	Descrição 
+------------------- ----------------------------------------------------------------------
+ID	    			ID do utilizador
+USERNAME			Username do utilizador  
+NOME				Nome do utilizador
+ROLE				Tipo de utilizador
+EMAIL				Endereço de correio eletrónico do utilizador
+REGIME				Regime do utilizador
+RAMO				Ramo do utilizador
+PREFERENCIA			Preferência do utilizador 
+HASHORARIOCOMPLETO	Indica se o utilizador tem horário completo
+TEMPORARIO			Indica se o utilizador é temporário
+TURMA_ID			ID da turma
+PASSWORD   			Password do utilizador
+REMEMBER_TOKEN		Token da sessão
+CREATED_AT 			Data/hora de inserção do registo  
+UPDATED_AT			Data/hora de atualização do registo
