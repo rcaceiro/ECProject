@@ -487,7 +487,6 @@
           <portSpacing port="sink_out 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="multiply" compatibility="8.1.001" expanded="true" height="82" name="Multiply (3)" width="90" x="1050" y="901"/>
       <operator activated="true" class="filter_examples" compatibility="8.1.001" expanded="true" height="103" name="Filter Examples (3)" width="90" x="1251" y="952">
         <parameter key="parameter_expression" value=""/>
         <parameter key="condition_class" value="custom_filters"/>
@@ -530,45 +529,6 @@
         </list>
         <parameter key="keep_both_join_attributes" value="false"/>
       </operator>
-      <operator activated="true" class="generate_attributes" compatibility="8.1.001" expanded="true" height="82" name="Generate Attributes (5)" width="90" x="1921" y="901">
-        <list key="function_descriptions">
-          <parameter key="PEDIU_TROCA" value="if(TROCA_ACEITE == 1 || PEDIU_TROCA == 1, 1, 0)"/>
-        </list>
-        <parameter key="keep_all" value="true"/>
-      </operator>
-      <operator activated="true" class="replace_missing_values" compatibility="8.1.001" expanded="true" height="103" name="Replace Missing Values (2)" width="90" x="2055" y="901">
-        <parameter key="return_preprocessing_model" value="false"/>
-        <parameter key="create_view" value="false"/>
-        <parameter key="attribute_filter_type" value="single"/>
-        <parameter key="attribute" value="TROCA_ACEITE"/>
-        <parameter key="attributes" value=""/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="attribute_value"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="time"/>
-        <parameter key="block_type" value="attribute_block"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_matrix_row_start"/>
-        <parameter key="invert_selection" value="false"/>
-        <parameter key="include_special_attributes" value="false"/>
-        <parameter key="default" value="value"/>
-        <list key="columns"/>
-        <parameter key="replenishment_value" value="0"/>
-      </operator>
-      <operator activated="true" class="select_attributes" compatibility="8.1.001" expanded="true" height="82" name="Select Attributes (6)" width="90" x="2189" y="850">
-        <parameter key="attribute_filter_type" value="subset"/>
-        <parameter key="attribute" value=""/>
-        <parameter key="attributes" value="NEW_TURMA_ID|ESTADO"/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="attribute_value"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="time"/>
-        <parameter key="block_type" value="attribute_block"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_matrix_row_start"/>
-        <parameter key="invert_selection" value="true"/>
-        <parameter key="include_special_attributes" value="false"/>
-      </operator>
       <operator activated="false" class="retrieve" compatibility="8.1.001" expanded="true" height="68" name="Retrieve T_TURNO_USER" width="90" x="45" y="850">
         <parameter key="repository_entry" value="//ECProject/data/T_TURNO_USER"/>
       </operator>
@@ -598,6 +558,297 @@
       <operator activated="false" class="rename" compatibility="8.1.001" expanded="true" height="82" name="Rename (3)" width="90" x="313" y="850">
         <parameter key="old_name" value="count(USER_ID)"/>
         <list key="rename_additional_attributes"/>
+      </operator>
+      <operator activated="true" class="retrieve" compatibility="8.1.001" expanded="true" height="68" name="Retrieve T_TROCAS" width="90" x="45" y="1105">
+        <parameter key="repository_entry" value="../data/T_TROCAS"/>
+      </operator>
+      <operator activated="true" class="subprocess" compatibility="8.1.001" expanded="true" height="82" name="Limpar Trocas Turno" width="90" x="179" y="1105">
+        <process expanded="true">
+          <operator activated="true" class="multiply" compatibility="8.1.001" expanded="true" height="103" name="Multiply (2)" width="90" x="45" y="136"/>
+          <operator activated="true" class="select_attributes" compatibility="8.1.001" expanded="true" height="82" name="Select Attributes (5)" width="90" x="179" y="34">
+            <parameter key="attribute_filter_type" value="subset"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value="ESTADOTROCA|TURNO_ID_CORRENTE|TURNO_ID_PRETENDIDO|USER_SENDER"/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+          </operator>
+          <operator activated="true" class="select_attributes" compatibility="8.1.001" expanded="true" height="82" name="Select Attributes (11)" width="90" x="179" y="238">
+            <parameter key="attribute_filter_type" value="subset"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value="ESTADOTROCA|TURNO_ID_CORRENTE|TURNO_ID_PRETENDIDO|USER_RECEIVER"/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+          </operator>
+          <operator activated="true" class="rename" compatibility="8.1.001" expanded="true" height="82" name="Rename (4)" width="90" x="313" y="238">
+            <parameter key="old_name" value="ESTADOTROCA"/>
+            <parameter key="new_name" value="ESTADO"/>
+            <list key="rename_additional_attributes">
+              <parameter key="TURNO_ID_PRETENDIDO" value="TURNO_ID"/>
+              <parameter key="USER_RECEIVER" value="USER_ID"/>
+              <parameter key="TURNO_ID_CORRENTE" value="NEW_TURNO_ID"/>
+            </list>
+          </operator>
+          <operator activated="true" class="rename" compatibility="8.1.001" expanded="true" height="82" name="Rename (5)" width="90" x="313" y="34">
+            <parameter key="old_name" value="ESTADOTROCA"/>
+            <parameter key="new_name" value="ESTADO"/>
+            <list key="rename_additional_attributes">
+              <parameter key="TURNO_ID_CORRENTE" value="TURNO_ID"/>
+              <parameter key="USER_SENDER" value="USER_ID"/>
+              <parameter key="TURNO_ID_PRETENDIDO" value="NEW_TURNO_ID"/>
+            </list>
+          </operator>
+          <operator activated="true" class="union" compatibility="8.1.001" expanded="true" height="82" name="Union (2)" width="90" x="447" y="136"/>
+          <operator activated="true" class="generate_id" compatibility="8.1.001" expanded="true" height="82" name="Generate ID (2)" width="90" x="581" y="136">
+            <parameter key="create_nominal_ids" value="false"/>
+            <parameter key="offset" value="0"/>
+          </operator>
+          <operator activated="true" class="filter_examples" compatibility="8.1.001" expanded="true" height="103" name="Filter Examples (4)" width="90" x="715" y="136">
+            <parameter key="parameter_expression" value=""/>
+            <parameter key="condition_class" value="custom_filters"/>
+            <parameter key="invert_filter" value="false"/>
+            <list key="filters_list">
+              <parameter key="filters_entry_key" value="ESTADO.eq.-2"/>
+            </list>
+            <parameter key="filters_logic_and" value="true"/>
+            <parameter key="filters_check_metadata" value="true"/>
+          </operator>
+          <operator activated="true" class="remove_duplicates" compatibility="8.1.001" expanded="true" height="103" name="Remove Duplicates (2)" width="90" x="849" y="85">
+            <parameter key="attribute_filter_type" value="subset"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value="TURNO_ID|USER_ID"/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="treat_missing_values_as_duplicates" value="false"/>
+          </operator>
+          <operator activated="true" class="multiply" compatibility="8.1.001" expanded="true" height="103" name="Multiply (7)" width="90" x="983" y="238"/>
+          <operator activated="true" class="multiply" compatibility="8.1.001" expanded="true" height="103" name="Multiply (8)" width="90" x="983" y="85"/>
+          <operator activated="true" class="append" compatibility="8.1.001" expanded="true" height="103" name="Append (2)" width="90" x="1117" y="238">
+            <parameter key="datamanagement" value="double_array"/>
+            <parameter key="data_management" value="auto"/>
+            <parameter key="merge_type" value="all"/>
+          </operator>
+          <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (9)" width="90" x="1117" y="85">
+            <parameter key="remove_double_attributes" value="true"/>
+            <parameter key="join_type" value="inner"/>
+            <parameter key="use_id_attribute_as_key" value="false"/>
+            <list key="key_attributes">
+              <parameter key="NEW_TURNO_ID" value="NEW_TURNO_ID"/>
+              <parameter key="TURNO_ID" value="TURNO_ID"/>
+              <parameter key="USER_ID" value="USER_ID"/>
+            </list>
+            <parameter key="keep_both_join_attributes" value="false"/>
+          </operator>
+          <operator activated="true" class="set_minus" compatibility="8.1.001" expanded="true" height="82" name="Set Minus (2)" width="90" x="1318" y="136"/>
+          <connect from_port="in 1" to_op="Multiply (2)" to_port="input"/>
+          <connect from_op="Multiply (2)" from_port="output 1" to_op="Select Attributes (5)" to_port="example set input"/>
+          <connect from_op="Multiply (2)" from_port="output 2" to_op="Select Attributes (11)" to_port="example set input"/>
+          <connect from_op="Select Attributes (5)" from_port="example set output" to_op="Rename (5)" to_port="example set input"/>
+          <connect from_op="Select Attributes (11)" from_port="example set output" to_op="Rename (4)" to_port="example set input"/>
+          <connect from_op="Rename (4)" from_port="example set output" to_op="Union (2)" to_port="example set 2"/>
+          <connect from_op="Rename (5)" from_port="example set output" to_op="Union (2)" to_port="example set 1"/>
+          <connect from_op="Union (2)" from_port="union" to_op="Generate ID (2)" to_port="example set input"/>
+          <connect from_op="Generate ID (2)" from_port="example set output" to_op="Filter Examples (4)" to_port="example set input"/>
+          <connect from_op="Filter Examples (4)" from_port="example set output" to_op="Remove Duplicates (2)" to_port="example set input"/>
+          <connect from_op="Filter Examples (4)" from_port="unmatched example set" to_op="Multiply (7)" to_port="input"/>
+          <connect from_op="Remove Duplicates (2)" from_port="example set output" to_op="Multiply (8)" to_port="input"/>
+          <connect from_op="Multiply (7)" from_port="output 1" to_op="Join (9)" to_port="right"/>
+          <connect from_op="Multiply (7)" from_port="output 2" to_op="Append (2)" to_port="example set 2"/>
+          <connect from_op="Multiply (8)" from_port="output 1" to_op="Join (9)" to_port="left"/>
+          <connect from_op="Multiply (8)" from_port="output 2" to_op="Append (2)" to_port="example set 1"/>
+          <connect from_op="Append (2)" from_port="merged set" to_op="Set Minus (2)" to_port="example set input"/>
+          <connect from_op="Join (9)" from_port="join" to_op="Set Minus (2)" to_port="subtrahend"/>
+          <connect from_op="Set Minus (2)" from_port="example set output" to_port="out 1"/>
+          <portSpacing port="source_in 1" spacing="0"/>
+          <portSpacing port="source_in 2" spacing="0"/>
+          <portSpacing port="sink_out 1" spacing="0"/>
+          <portSpacing port="sink_out 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="rename" compatibility="8.1.001" expanded="true" height="82" name="Rename (6)" width="90" x="313" y="1156">
+        <parameter key="old_name" value="ESTADO"/>
+        <parameter key="new_name" value="TURNO_ESTADO"/>
+        <list key="rename_additional_attributes"/>
+      </operator>
+      <operator activated="true" class="filter_examples" compatibility="8.1.001" expanded="true" height="103" name="Filter Examples (5)" width="90" x="514" y="1156">
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="custom_filters"/>
+        <parameter key="invert_filter" value="false"/>
+        <list key="filters_list">
+          <parameter key="filters_entry_key" value="TURNO_ESTADO.eq.-2"/>
+        </list>
+        <parameter key="filters_logic_and" value="true"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (10)" width="90" x="1921" y="1156">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="left"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="TURNO_ID" value="TURNO_ID"/>
+          <parameter key="USER_ID" value="USER_ID"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="generate_attributes" compatibility="8.1.001" expanded="true" height="82" name="Generate Attributes (6)" width="90" x="2055" y="1156">
+        <list key="function_descriptions">
+          <parameter key="PEDIU_TROCA" value="if(TURNO_ESTADO == -2 || PEDIU_TROCA == 1, 1, 0)"/>
+        </list>
+        <parameter key="keep_all" value="true"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (11)" width="90" x="2189" y="1258">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="left"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="TURNO_ID" value="NEW_TURNO_ID"/>
+          <parameter key="USER_ID" value="USER_ID"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="generate_attributes" compatibility="8.1.001" expanded="true" height="82" name="Generate Attributes (5)" width="90" x="2323" y="901">
+        <list key="function_descriptions">
+          <parameter key="PEDIU_TROCA" value="if(TROCA_ACEITE == 1 || PEDIU_TROCA == 1, 1, 0)"/>
+          <parameter key="TROCA_ACEITE" value="if((NEW_TURNO_ID != MISSING_NUMERIC &amp;&amp; TURNO_ESTADO==1)||TROCA_ACEITE==1,1,0)"/>
+        </list>
+        <parameter key="keep_all" value="true"/>
+      </operator>
+      <operator activated="true" class="replace_missing_values" compatibility="8.1.001" expanded="true" height="103" name="Replace Missing Values (2)" width="90" x="2457" y="901">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="create_view" value="false"/>
+        <parameter key="attribute_filter_type" value="single"/>
+        <parameter key="attribute" value="TROCA_ACEITE"/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="default" value="value"/>
+        <list key="columns"/>
+        <parameter key="replenishment_value" value="0"/>
+      </operator>
+      <operator activated="true" class="select_attributes" compatibility="8.1.001" expanded="true" height="82" name="Select Attributes (6)" width="90" x="2591" y="850">
+        <parameter key="attribute_filter_type" value="subset"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="PRESENTE|ANOUC|DIASEMANA|HASHORARIOCOMPLETO|HORAFIM|HORAINICIO|NOMEUC|PEDIU_TROCA|PROF_ID|RAMO|RAMOUC|REGIME|REGIMEUC|SEMANA|SEMESTREUC|TEMPORARIO|TIPOTURNO|TROCA_ACEITE|USER_ID|aula_date|is_vespera_feriado"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="order_attributes" compatibility="8.1.001" expanded="true" height="82" name="Reorder Attributes" width="90" x="2725" y="799">
+        <parameter key="sort_mode" value="user specified"/>
+        <parameter key="attribute_ordering" value="USER_ID|RAMO|REGIME|PROF_ID|TIPOTURNO|NOMEUC|RAMOUC|REGIMEUC|SEMESTREUC|ANOUC|aula_date|DIASEMANA|SEMANA|HORAINICIO|HORAFIM|is_vespera_feriado|HASHORARIOCOMPLETO|TEMPORARIO|PEDIU_TROCA|TROCA_ACEITE"/>
+        <parameter key="use_regular_expressions" value="false"/>
+        <parameter key="handle_unmatched" value="append"/>
+        <parameter key="sort_direction" value="ascending"/>
+      </operator>
+      <operator activated="true" class="sort" compatibility="8.1.001" expanded="true" height="82" name="Sort" width="90" x="2859" y="799">
+        <parameter key="attribute_name" value="aula_date"/>
+        <parameter key="sorting_direction" value="increasing"/>
+      </operator>
+      <operator activated="true" class="concurrency:cross_validation" compatibility="8.1.001" expanded="true" height="145" name="Cross Validation" width="90" x="2993" y="799">
+        <parameter key="split_on_batch_attribute" value="false"/>
+        <parameter key="leave_one_out" value="false"/>
+        <parameter key="number_of_folds" value="10"/>
+        <parameter key="sampling_type" value="automatic"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <parameter key="enable_parallel_execution" value="true"/>
+        <process expanded="true">
+          <operator activated="true" class="h2o:deep_learning" compatibility="7.6.001" expanded="true" height="82" name="Deep Learning" width="90" x="179" y="34">
+            <parameter key="activation" value="Rectifier"/>
+            <enumeration key="hidden_layer_sizes">
+              <parameter key="hidden_layer_sizes" value="50"/>
+              <parameter key="hidden_layer_sizes" value="50"/>
+            </enumeration>
+            <enumeration key="hidden_dropout_ratios"/>
+            <parameter key="reproducible_(uses_1_thread)" value="false"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="epochs" value="10.0"/>
+            <parameter key="compute_variable_importances" value="false"/>
+            <parameter key="train_samples_per_iteration" value="-2"/>
+            <parameter key="adaptive_rate" value="true"/>
+            <parameter key="epsilon" value="1.0E-8"/>
+            <parameter key="rho" value="0.99"/>
+            <parameter key="learning_rate" value="0.005"/>
+            <parameter key="learning_rate_annealing" value="1.0E-6"/>
+            <parameter key="learning_rate_decay" value="1.0"/>
+            <parameter key="momentum_start" value="0.0"/>
+            <parameter key="momentum_ramp" value="1000000.0"/>
+            <parameter key="momentum_stable" value="0.0"/>
+            <parameter key="nesterov_accelerated_gradient" value="true"/>
+            <parameter key="standardize" value="true"/>
+            <parameter key="L1" value="1.0E-5"/>
+            <parameter key="L2" value="0.0"/>
+            <parameter key="max_w2" value="10.0"/>
+            <parameter key="loss_function" value="Automatic"/>
+            <parameter key="distribution_function" value="AUTO"/>
+            <parameter key="early_stopping" value="false"/>
+            <parameter key="stopping_rounds" value="1"/>
+            <parameter key="stopping_metric" value="AUTO"/>
+            <parameter key="stopping_tolerance" value="0.001"/>
+            <parameter key="missing_values_handling" value="MeanImputation"/>
+            <parameter key="max_runtime_seconds" value="0"/>
+            <list key="expert_parameters"/>
+            <list key="expert_parameters_"/>
+          </operator>
+          <connect from_port="training set" to_op="Deep Learning" to_port="training set"/>
+          <connect from_op="Deep Learning" from_port="model" to_port="model"/>
+          <portSpacing port="source_training set" spacing="0"/>
+          <portSpacing port="sink_model" spacing="0"/>
+          <portSpacing port="sink_through 1" spacing="0"/>
+        </process>
+        <process expanded="true">
+          <operator activated="true" class="apply_model" compatibility="8.1.001" expanded="true" height="82" name="Apply Model" width="90" x="179" y="34">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="false"/>
+          </operator>
+          <operator activated="true" class="performance" compatibility="8.1.001" expanded="true" height="82" name="Performance (3)" width="90" x="380" y="34">
+            <parameter key="use_example_weights" value="true"/>
+          </operator>
+          <connect from_port="model" to_op="Apply Model" to_port="model"/>
+          <connect from_port="test set" to_op="Apply Model" to_port="unlabelled data"/>
+          <connect from_op="Apply Model" from_port="labelled data" to_op="Performance (3)" to_port="labelled data"/>
+          <connect from_op="Performance (3)" from_port="performance" to_port="performance 1"/>
+          <portSpacing port="source_model" spacing="0"/>
+          <portSpacing port="source_test set" spacing="0"/>
+          <portSpacing port="source_through 1" spacing="0"/>
+          <portSpacing port="sink_test set results" spacing="0"/>
+          <portSpacing port="sink_performance 1" spacing="0"/>
+          <portSpacing port="sink_performance 2" spacing="0"/>
+        </process>
       </operator>
       <connect from_op="Retrieve T_PRESENCAS" from_port="output" to_op="Join" to_port="left"/>
       <connect from_op="Retrieve T_AULAS_SEMANA" from_port="output" to_op="Join" to_port="right"/>
@@ -632,19 +883,29 @@
       <connect from_op="Map (3)" from_port="example set output" to_op="Join (4)" to_port="right"/>
       <connect from_op="Join (4)" from_port="join" to_op="Join (6)" to_port="left"/>
       <connect from_op="Retrieve T_TROCAS_TURMA (2)" from_port="output" to_op="Limpar Trocas Turma" to_port="in 1"/>
-      <connect from_op="Limpar Trocas Turma" from_port="out 1" to_op="Multiply (3)" to_port="input"/>
-      <connect from_op="Multiply (3)" from_port="output 1" to_op="Filter Examples (3)" to_port="example set input"/>
+      <connect from_op="Limpar Trocas Turma" from_port="out 1" to_op="Filter Examples (3)" to_port="example set input"/>
       <connect from_op="Filter Examples (3)" from_port="example set output" to_op="Join (6)" to_port="right"/>
       <connect from_op="Filter Examples (3)" from_port="unmatched example set" to_op="Generate Attributes (4)" to_port="example set input"/>
       <connect from_op="Join (6)" from_port="join" to_op="Generate Attributes (3)" to_port="example set input"/>
       <connect from_op="Generate Attributes (3)" from_port="example set output" to_op="Join (7)" to_port="left"/>
       <connect from_op="Generate Attributes (4)" from_port="example set output" to_op="Join (7)" to_port="right"/>
-      <connect from_op="Join (7)" from_port="join" to_op="Generate Attributes (5)" to_port="example set input"/>
-      <connect from_op="Generate Attributes (5)" from_port="example set output" to_op="Replace Missing Values (2)" to_port="example set input"/>
-      <connect from_op="Replace Missing Values (2)" from_port="example set output" to_op="Select Attributes (6)" to_port="example set input"/>
-      <connect from_op="Select Attributes (6)" from_port="example set output" to_port="result 1"/>
+      <connect from_op="Join (7)" from_port="join" to_op="Join (10)" to_port="left"/>
       <connect from_op="Retrieve T_TURNO_USER" from_port="output" to_op="Aggregate" to_port="example set input"/>
       <connect from_op="Aggregate" from_port="example set output" to_op="Rename (3)" to_port="example set input"/>
+      <connect from_op="Retrieve T_TROCAS" from_port="output" to_op="Limpar Trocas Turno" to_port="in 1"/>
+      <connect from_op="Limpar Trocas Turno" from_port="out 1" to_op="Rename (6)" to_port="example set input"/>
+      <connect from_op="Rename (6)" from_port="example set output" to_op="Filter Examples (5)" to_port="example set input"/>
+      <connect from_op="Filter Examples (5)" from_port="example set output" to_op="Join (10)" to_port="right"/>
+      <connect from_op="Filter Examples (5)" from_port="unmatched example set" to_op="Join (11)" to_port="right"/>
+      <connect from_op="Join (10)" from_port="join" to_op="Generate Attributes (6)" to_port="example set input"/>
+      <connect from_op="Generate Attributes (6)" from_port="example set output" to_op="Join (11)" to_port="left"/>
+      <connect from_op="Join (11)" from_port="join" to_op="Generate Attributes (5)" to_port="example set input"/>
+      <connect from_op="Generate Attributes (5)" from_port="example set output" to_op="Replace Missing Values (2)" to_port="example set input"/>
+      <connect from_op="Replace Missing Values (2)" from_port="example set output" to_op="Select Attributes (6)" to_port="example set input"/>
+      <connect from_op="Select Attributes (6)" from_port="example set output" to_op="Reorder Attributes" to_port="example set input"/>
+      <connect from_op="Reorder Attributes" from_port="example set output" to_op="Sort" to_port="example set input"/>
+      <connect from_op="Sort" from_port="example set output" to_op="Cross Validation" to_port="example set"/>
+      <connect from_op="Cross Validation" from_port="example set" to_port="result 1"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="714"/>
       <portSpacing port="sink_result 2" spacing="268"/>
