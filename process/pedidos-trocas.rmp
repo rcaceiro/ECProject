@@ -82,6 +82,7 @@
         <parameter key="target_role" value="id"/>
         <list key="set_additional_roles">
           <parameter key="USER_ID" value="id"/>
+          <parameter key="TURMA_ID" value="id"/>
         </list>
       </operator>
       <operator activated="true" class="filter_examples" compatibility="8.1.001" expanded="true" height="103" name="Filter Examples" width="90" x="1184" y="187">
@@ -128,6 +129,13 @@
         <parameter key="keep_both_join_attributes" value="false"/>
       </operator>
       <operator activated="true" class="set_minus" compatibility="8.1.001" expanded="true" height="82" name="Set Minus" width="90" x="2055" y="289"/>
+      <operator activated="true" class="set_role" compatibility="8.1.001" expanded="true" height="82" name="Set Role (2)" width="90" x="2189" y="289">
+        <parameter key="attribute_name" value="TURMA_ID"/>
+        <parameter key="target_role" value="id"/>
+        <list key="set_additional_roles">
+          <parameter key="TURMA_ID" value="regular"/>
+        </list>
+      </operator>
       <connect from_op="Retrieve T_TROCAS_TURMA" from_port="output" to_op="Select Attributes" to_port="example set input"/>
       <connect from_op="Select Attributes" from_port="example set output" to_op="Multiply" to_port="input"/>
       <connect from_op="Multiply" from_port="output 1" to_op="Select Attributes (2)" to_port="example set input"/>
@@ -147,7 +155,8 @@
       <connect from_op="Multiply (2)" from_port="output 2" to_op="Append" to_port="example set 1"/>
       <connect from_op="Append" from_port="merged set" to_op="Set Minus" to_port="example set input"/>
       <connect from_op="Join" from_port="join" to_op="Set Minus" to_port="subtrahend"/>
-      <connect from_op="Set Minus" from_port="example set output" to_port="result 1"/>
+      <connect from_op="Set Minus" from_port="example set output" to_op="Set Role (2)" to_port="example set input"/>
+      <connect from_op="Set Role (2)" from_port="example set output" to_port="result 1"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="189"/>
       <portSpacing port="sink_result 2" spacing="0"/>
