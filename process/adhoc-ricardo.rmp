@@ -534,7 +534,7 @@
         <parameter key="keep_all" value="true"/>
       </operator>
       <operator activated="true" class="retrieve" compatibility="8.1.001" expanded="true" height="68" name="Retrieve T_TURNO_USER" width="90" x="45" y="850">
-        <parameter key="repository_entry" value="//ECProject/data/T_TURNO_USER"/>
+        <parameter key="repository_entry" value="../data/T_TURNO_USER"/>
       </operator>
       <operator activated="true" class="aggregate" compatibility="8.1.001" expanded="true" height="82" name="Aggregate" width="90" x="179" y="850">
         <parameter key="use_default_aggregation" value="false"/>
