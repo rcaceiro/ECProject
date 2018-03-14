@@ -899,6 +899,16 @@
         <parameter key="invert_selection" value="false"/>
         <parameter key="include_special_attributes" value="true"/>
       </operator>
+      <operator activated="true" class="filter_examples" compatibility="8.1.001" expanded="true" height="103" name="Filter Examples (6)" width="90" x="3998" y="952">
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="custom_filters"/>
+        <parameter key="invert_filter" value="false"/>
+        <list key="filters_list">
+          <parameter key="filters_entry_key" value="PRESENTE.equals.0"/>
+        </list>
+        <parameter key="filters_logic_and" value="true"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
       <operator activated="false" class="concurrency:cross_validation" compatibility="8.1.001" expanded="true" height="145" name="Cross Validation" width="90" x="3730" y="1258">
         <parameter key="split_on_batch_attribute" value="false"/>
         <parameter key="leave_one_out" value="false"/>
@@ -1043,7 +1053,8 @@
       <connect from_op="Generate Attributes (2)" from_port="example set output" to_op="Join (13)" to_port="left"/>
       <connect from_op="Join (13)" from_port="join" to_op="Select Attributes (12)" to_port="example set input"/>
       <connect from_op="Select Attributes (12)" from_port="example set output" to_op="Numerical to Polynominal (2)" to_port="example set input"/>
-      <connect from_op="Numerical to Polynominal (2)" from_port="example set output" to_op="Store" to_port="input"/>
+      <connect from_op="Numerical to Polynominal (2)" from_port="example set output" to_op="Filter Examples (6)" to_port="example set input"/>
+      <connect from_op="Filter Examples (6)" from_port="example set output" to_op="Store" to_port="input"/>
       <connect from_op="Store" from_port="through" to_port="result 1"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="798"/>
