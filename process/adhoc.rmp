@@ -566,7 +566,7 @@
       </operator>
       <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (12)" width="90" x="983" y="748">
         <parameter key="remove_double_attributes" value="true"/>
-        <parameter key="join_type" value="inner"/>
+        <parameter key="join_type" value="left"/>
         <parameter key="use_id_attribute_as_key" value="false"/>
         <list key="key_attributes">
           <parameter key="ID" value="TURNO_ID"/>
@@ -874,7 +874,7 @@
       <operator activated="true" class="select_attributes" compatibility="8.1.001" expanded="true" height="82" name="Select Attributes (12)" width="90" x="3730" y="952">
         <parameter key="attribute_filter_type" value="subset"/>
         <parameter key="attribute" value=""/>
-        <parameter key="attributes" value="USER_ID|count(PRESENTE)"/>
+        <parameter key="attributes" value="count(PRESENTE)"/>
         <parameter key="use_except_expression" value="false"/>
         <parameter key="value_type" value="attribute_value"/>
         <parameter key="use_value_type_exception" value="false"/>
@@ -952,11 +952,11 @@
           <portSpacing port="sink_performance 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="false" class="discretize_by_user_specification" compatibility="8.1.001" expanded="true" height="103" name="Discretize" width="90" x="3462" y="1156">
+      <operator activated="false" class="discretize_by_user_specification" compatibility="8.1.001" expanded="true" height="103" name="Discretize" width="90" x="3931" y="1309">
         <parameter key="return_preprocessing_model" value="false"/>
         <parameter key="create_view" value="false"/>
-        <parameter key="attribute_filter_type" value="all"/>
-        <parameter key="attribute" value=""/>
+        <parameter key="attribute_filter_type" value="single"/>
+        <parameter key="attribute" value="presence_percentage"/>
         <parameter key="attributes" value=""/>
         <parameter key="use_except_expression" value="false"/>
         <parameter key="value_type" value="numeric"/>
@@ -968,8 +968,10 @@
         <parameter key="invert_selection" value="false"/>
         <parameter key="include_special_attributes" value="false"/>
         <list key="classes">
-          <parameter key="first" value="-Infinity"/>
-          <parameter key="last" value="Infinity"/>
+          <parameter key="dont_care" value="30.0"/>
+          <parameter key="baldas" value="60.0"/>
+          <parameter key="menos_assiduo" value="90.0"/>
+          <parameter key="assiduo" value="100.0"/>
         </list>
       </operator>
       <operator activated="true" class="store" compatibility="8.1.001" expanded="true" height="68" name="Store" width="90" x="4132" y="952">
