@@ -211,7 +211,7 @@
             </list>
             <parameter key="keep_all" value="true"/>
           </operator>
-          <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join" width="90" x="1184" y="187">
+          <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join" width="90" x="983" y="187">
             <parameter key="remove_double_attributes" value="true"/>
             <parameter key="join_type" value="left"/>
             <parameter key="use_id_attribute_as_key" value="false"/>
@@ -231,7 +231,7 @@
             <parameter key="locale" value="English (United States)"/>
             <parameter key="keep_old_attribute" value="false"/>
           </operator>
-          <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (2)" width="90" x="1318" y="340">
+          <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (2)" width="90" x="1184" y="340">
             <parameter key="remove_double_attributes" value="true"/>
             <parameter key="join_type" value="left"/>
             <parameter key="use_id_attribute_as_key" value="false"/>
@@ -240,7 +240,7 @@
             </list>
             <parameter key="keep_both_join_attributes" value="true"/>
           </operator>
-          <operator activated="true" class="filter_examples" compatibility="8.1.001" expanded="true" height="103" name="Filter Feriadoss" width="90" x="1519" y="187">
+          <operator activated="true" class="filter_examples" compatibility="8.1.001" expanded="true" height="103" name="Filter Feriados" width="90" x="1519" y="187">
             <parameter key="parameter_expression" value=""/>
             <parameter key="condition_class" value="custom_filters"/>
             <parameter key="invert_filter" value="false"/>
@@ -263,7 +263,7 @@
           <operator activated="true" class="select_attributes" compatibility="8.1.001" expanded="true" height="82" name="Select Attributes (3)" width="90" x="1787" y="187">
             <parameter key="attribute_filter_type" value="subset"/>
             <parameter key="attribute" value=""/>
-            <parameter key="attributes" value="IS_DIA_ESPECIAL|EVENTO|DATA"/>
+            <parameter key="attributes" value="DATA|EVENTO|IS_DIA_ESPECIAL|feriado_date|is_feriado"/>
             <parameter key="use_except_expression" value="false"/>
             <parameter key="value_type" value="attribute_value"/>
             <parameter key="use_value_type_exception" value="false"/>
@@ -286,8 +286,8 @@
           <connect from_op="Join" from_port="join" to_op="Join (2)" to_port="left"/>
           <connect from_op="Retrieve T_EXT_FERIADOS" from_port="output" to_op="Nominal to Date (2)" to_port="example set input"/>
           <connect from_op="Nominal to Date (2)" from_port="example set output" to_op="Join (2)" to_port="right"/>
-          <connect from_op="Join (2)" from_port="join" to_op="Filter Feriadoss" to_port="example set input"/>
-          <connect from_op="Filter Feriadoss" from_port="example set output" to_op="Filter Dias Especiais" to_port="example set input"/>
+          <connect from_op="Join (2)" from_port="join" to_op="Filter Feriados" to_port="example set input"/>
+          <connect from_op="Filter Feriados" from_port="example set output" to_op="Filter Dias Especiais" to_port="example set input"/>
           <connect from_op="Filter Dias Especiais" from_port="example set output" to_op="Select Attributes (3)" to_port="example set input"/>
           <connect from_op="Select Attributes (3)" from_port="example set output" to_port="out 1"/>
           <portSpacing port="source_in 1" spacing="0"/>
