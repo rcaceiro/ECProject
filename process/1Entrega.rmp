@@ -12,7 +12,7 @@
     <parameter key="process_duration_for_mail" value="30"/>
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
-      <operator activated="true" class="subprocess" compatibility="8.1.001" expanded="true" height="82" name="retrieve users" width="90" x="45" y="289">
+      <operator activated="true" class="subprocess" compatibility="8.1.001" expanded="true" height="82" name="retrieve users" width="90" x="45" y="136">
         <process expanded="true">
           <operator activated="true" class="retrieve" compatibility="8.1.001" expanded="true" height="68" name="Retrieve T_USERS (2)" width="90" x="45" y="34">
             <parameter key="repository_entry" value="../data/T_USERS"/>
@@ -143,7 +143,7 @@
           <portSpacing port="sink_out 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="subprocess" compatibility="8.1.001" expanded="true" height="82" name="retrieve class presences" width="90" x="45" y="187">
+      <operator activated="true" class="subprocess" compatibility="8.1.001" expanded="true" height="82" name="retrieve class presences" width="90" x="45" y="34">
         <process expanded="true">
           <operator activated="true" class="retrieve" compatibility="8.1.001" expanded="true" height="68" name="Retrieve T_PRESENCAS (2)" width="90" x="45" y="85">
             <parameter key="repository_entry" value="../data/T_PRESENCAS"/>
@@ -211,7 +211,7 @@
             </list>
             <parameter key="keep_all" value="true"/>
           </operator>
-          <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join" width="90" x="983" y="187">
+          <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join" width="90" x="849" y="238">
             <parameter key="remove_double_attributes" value="true"/>
             <parameter key="join_type" value="left"/>
             <parameter key="use_id_attribute_as_key" value="false"/>
@@ -231,7 +231,7 @@
             <parameter key="locale" value="English (United States)"/>
             <parameter key="keep_old_attribute" value="false"/>
           </operator>
-          <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (2)" width="90" x="1184" y="340">
+          <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (2)" width="90" x="983" y="340">
             <parameter key="remove_double_attributes" value="true"/>
             <parameter key="join_type" value="left"/>
             <parameter key="use_id_attribute_as_key" value="false"/>
@@ -240,7 +240,7 @@
             </list>
             <parameter key="keep_both_join_attributes" value="true"/>
           </operator>
-          <operator activated="true" class="filter_examples" compatibility="8.1.001" expanded="true" height="103" name="Filter Feriados" width="90" x="1519" y="187">
+          <operator activated="true" class="filter_examples" compatibility="8.1.001" expanded="true" height="103" name="Filter Feriados" width="90" x="1117" y="340">
             <parameter key="parameter_expression" value=""/>
             <parameter key="condition_class" value="custom_filters"/>
             <parameter key="invert_filter" value="false"/>
@@ -250,7 +250,7 @@
             <parameter key="filters_logic_and" value="true"/>
             <parameter key="filters_check_metadata" value="true"/>
           </operator>
-          <operator activated="true" class="filter_examples" compatibility="8.1.001" expanded="true" height="103" name="Filter Dias Especiais" width="90" x="1653" y="187">
+          <operator activated="true" class="filter_examples" compatibility="8.1.001" expanded="true" height="103" name="Filter Dias Especiais" width="90" x="1251" y="340">
             <parameter key="parameter_expression" value=""/>
             <parameter key="condition_class" value="custom_filters"/>
             <parameter key="invert_filter" value="false"/>
@@ -260,7 +260,7 @@
             <parameter key="filters_logic_and" value="true"/>
             <parameter key="filters_check_metadata" value="true"/>
           </operator>
-          <operator activated="true" class="select_attributes" compatibility="8.1.001" expanded="true" height="82" name="Select Attributes (3)" width="90" x="1787" y="187">
+          <operator activated="true" class="select_attributes" compatibility="8.1.001" expanded="true" height="82" name="Select Attributes (3)" width="90" x="1385" y="340">
             <parameter key="attribute_filter_type" value="subset"/>
             <parameter key="attribute" value=""/>
             <parameter key="attributes" value="DATA|EVENTO|IS_DIA_ESPECIAL|IS_FERIADO"/>
@@ -295,7 +295,7 @@
           <portSpacing port="sink_out 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (5)" width="90" x="514" y="289">
+      <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (5)" width="90" x="179" y="34">
         <parameter key="remove_double_attributes" value="true"/>
         <parameter key="join_type" value="inner"/>
         <parameter key="use_id_attribute_as_key" value="false"/>
@@ -304,7 +304,7 @@
         </list>
         <parameter key="keep_both_join_attributes" value="false"/>
       </operator>
-      <operator activated="true" class="subprocess" compatibility="8.1.001" expanded="true" height="82" name="retrieve shift_users" width="90" x="45" y="391">
+      <operator activated="true" class="subprocess" compatibility="8.1.001" expanded="true" height="82" name="retrieve shift_users" width="90" x="45" y="238">
         <process expanded="true">
           <operator activated="true" class="retrieve" compatibility="8.1.001" expanded="true" height="68" name="Retrieve T_TURNOS (2)" width="90" x="45" y="34">
             <parameter key="repository_entry" value="../data/T_TURNOS"/>
@@ -396,7 +396,7 @@
           <portSpacing port="sink_out 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (3)" width="90" x="648" y="391">
+      <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (3)" width="90" x="313" y="187">
         <parameter key="remove_double_attributes" value="true"/>
         <parameter key="join_type" value="inner"/>
         <parameter key="use_id_attribute_as_key" value="false"/>
@@ -405,7 +405,7 @@
         </list>
         <parameter key="keep_both_join_attributes" value="false"/>
       </operator>
-      <operator activated="true" class="numerical_to_polynominal" compatibility="8.1.001" expanded="true" height="82" name="Numerical to Polynominal" width="90" x="782" y="289">
+      <operator activated="true" class="numerical_to_polynominal" compatibility="8.1.001" expanded="true" height="82" name="Numerical to Polynominal" width="90" x="447" y="187">
         <parameter key="attribute_filter_type" value="single"/>
         <parameter key="attribute" value="PRESENTE"/>
         <parameter key="attributes" value=""/>
@@ -419,11 +419,11 @@
         <parameter key="invert_selection" value="false"/>
         <parameter key="include_special_attributes" value="true"/>
       </operator>
-      <operator activated="true" class="sort" compatibility="8.1.001" expanded="true" height="82" name="Sort" width="90" x="1050" y="238">
+      <operator activated="true" class="sort" compatibility="8.1.001" expanded="true" height="82" name="Sort" width="90" x="581" y="187">
         <parameter key="attribute_name" value="AULA_DATE"/>
         <parameter key="sorting_direction" value="increasing"/>
       </operator>
-      <operator activated="true" class="select_attributes" compatibility="8.1.001" expanded="true" height="82" name="Select Attributes" width="90" x="1184" y="238">
+      <operator activated="true" class="select_attributes" compatibility="8.1.001" expanded="true" height="82" name="Select Attributes" width="90" x="715" y="187">
         <parameter key="attribute_filter_type" value="subset"/>
         <parameter key="attribute" value=""/>
         <parameter key="attributes" value="PROF_ID|TURMA_ID|TURNO_ID|USER_ID"/>
@@ -437,7 +437,7 @@
         <parameter key="invert_selection" value="true"/>
         <parameter key="include_special_attributes" value="false"/>
       </operator>
-      <operator activated="true" class="store" compatibility="8.1.001" expanded="true" height="68" name="Store" width="90" x="1385" y="238">
+      <operator activated="true" class="store" compatibility="8.1.001" expanded="true" height="68" name="Store" width="90" x="849" y="187">
         <parameter key="repository_entry" value="../data/dataset_1entrega"/>
       </operator>
       <connect from_op="retrieve users" from_port="out 1" to_op="Join (5)" to_port="right"/>
@@ -450,8 +450,8 @@
       <connect from_op="Select Attributes" from_port="example set output" to_op="Store" to_port="input"/>
       <connect from_op="Store" from_port="through" to_port="result 1"/>
       <portSpacing port="source_input 1" spacing="0"/>
-      <portSpacing port="sink_result 1" spacing="168"/>
-      <portSpacing port="sink_result 2" spacing="252"/>
+      <portSpacing port="sink_result 1" spacing="126"/>
+      <portSpacing port="sink_result 2" spacing="294"/>
     </process>
   </operator>
 </process>
