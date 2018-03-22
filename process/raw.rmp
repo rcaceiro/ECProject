@@ -358,10 +358,10 @@
         <parameter key="include_special_attributes" value="false"/>
       </operator>
       <operator activated="true" class="store" compatibility="8.1.001" expanded="true" height="68" name="Store" width="90" x="715" y="187">
-        <parameter key="repository_entry" value="../data/dataset_1entrega"/>
+        <parameter key="repository_entry" value="../data/dataset_raw"/>
       </operator>
       <operator activated="true" class="write_csv" compatibility="8.1.001" expanded="true" height="82" name="Write CSV" width="90" x="849" y="187">
-        <parameter key="csv_file" value="/Users/rcaceiro/Downloads/dataset_1entrega.csv"/>
+        <parameter key="csv_file" value="/Users/rcaceiro/Downloads/dataset_raw.csv"/>
         <parameter key="column_separator" value=";"/>
         <parameter key="write_attribute_names" value="true"/>
         <parameter key="quote_nominal_values" value="false"/>
