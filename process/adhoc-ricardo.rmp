@@ -80,17 +80,16 @@
         <parameter key="repository_entry" value="../data/T_EXT_FERIADOS"/>
       </operator>
       <operator activated="true" class="nominal_to_date" compatibility="8.1.001" expanded="true" height="82" name="Nominal to Date (2)" width="90" x="179" y="340">
-        <parameter key="attribute_name" value="feriado_date"/>
+        <parameter key="attribute_name" value="FERIADO_DATE"/>
         <parameter key="date_type" value="date"/>
         <parameter key="date_format" value="dd/MM/yyyy"/>
         <parameter key="time_zone" value="SYSTEM"/>
         <parameter key="locale" value="English (United States)"/>
         <parameter key="keep_old_attribute" value="false"/>
       </operator>
-      <operator activated="true" class="multiply" compatibility="8.1.001" expanded="true" height="103" name="Multiply" width="90" x="313" y="340"/>
       <operator activated="true" class="generate_attributes" compatibility="8.1.001" expanded="true" height="82" name="Generate Vesperas Feriado" width="90" x="514" y="391">
         <list key="function_descriptions">
-          <parameter key="vespera_feriado_date" value="date_add(feriado_date, -1, DATE_UNIT_DAY)"/>
+          <parameter key="vespera_feriado_date" value="date_add(FERIADO_DATE, -1, DATE_UNIT_DAY)"/>
           <parameter key="is_vespera_feriado" value="1"/>
         </list>
         <parameter key="keep_all" value="true"/>
@@ -111,15 +110,6 @@
         <parameter key="locale" value="English (United States)"/>
         <parameter key="keep_old_attribute" value="false"/>
       </operator>
-      <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (2)" width="90" x="849" y="85">
-        <parameter key="remove_double_attributes" value="true"/>
-        <parameter key="join_type" value="left"/>
-        <parameter key="use_id_attribute_as_key" value="false"/>
-        <list key="key_attributes">
-          <parameter key="aula_date" value="feriado_date"/>
-        </list>
-        <parameter key="keep_both_join_attributes" value="true"/>
-      </operator>
       <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (3)" width="90" x="983" y="187">
         <parameter key="remove_double_attributes" value="true"/>
         <parameter key="join_type" value="left"/>
@@ -128,16 +118,6 @@
           <parameter key="aula_date" value="vespera_feriado_date"/>
         </list>
         <parameter key="keep_both_join_attributes" value="true"/>
-      </operator>
-      <operator activated="true" class="filter_examples" compatibility="8.1.001" expanded="true" height="103" name="Filter Examples" width="90" x="1117" y="34">
-        <parameter key="parameter_expression" value=""/>
-        <parameter key="condition_class" value="custom_filters"/>
-        <parameter key="invert_filter" value="false"/>
-        <list key="filters_list">
-          <parameter key="filters_entry_key" value="is_feriado.does_not_equal.1"/>
-        </list>
-        <parameter key="filters_logic_and" value="true"/>
-        <parameter key="filters_check_metadata" value="true"/>
       </operator>
       <operator activated="true" class="select_attributes" compatibility="8.1.001" expanded="true" height="82" name="Select Attributes (2)" width="90" x="1251" y="34">
         <parameter key="attribute_filter_type" value="subset"/>
@@ -885,15 +865,11 @@
       <connect from_op="Generate Attributes" from_port="example set output" to_op="Select Attributes" to_port="example set input"/>
       <connect from_op="Select Attributes" from_port="example set output" to_op="Nominal to Date" to_port="example set input"/>
       <connect from_op="Retrieve T_EXT_FERIADOS" from_port="output" to_op="Nominal to Date (2)" to_port="example set input"/>
-      <connect from_op="Nominal to Date (2)" from_port="example set output" to_op="Multiply" to_port="input"/>
-      <connect from_op="Multiply" from_port="output 1" to_op="Join (2)" to_port="right"/>
-      <connect from_op="Multiply" from_port="output 2" to_op="Generate Vesperas Feriado" to_port="example set input"/>
+      <connect from_op="Nominal to Date (2)" from_port="example set output" to_op="Generate Vesperas Feriado" to_port="example set input"/>
       <connect from_op="Generate Vesperas Feriado" from_port="example set output" to_op="Nominal to Date (3)" to_port="example set input"/>
       <connect from_op="Nominal to Date (3)" from_port="example set output" to_op="Join (3)" to_port="right"/>
-      <connect from_op="Nominal to Date" from_port="example set output" to_op="Join (2)" to_port="left"/>
-      <connect from_op="Join (2)" from_port="join" to_op="Join (3)" to_port="left"/>
-      <connect from_op="Join (3)" from_port="join" to_op="Filter Examples" to_port="example set input"/>
-      <connect from_op="Filter Examples" from_port="example set output" to_op="Select Attributes (2)" to_port="example set input"/>
+      <connect from_op="Nominal to Date" from_port="example set output" to_op="Join (3)" to_port="left"/>
+      <connect from_op="Join (3)" from_port="join" to_op="Select Attributes (2)" to_port="example set input"/>
       <connect from_op="Select Attributes (2)" from_port="example set output" to_op="Replace Missing Values" to_port="example set input"/>
       <connect from_op="Replace Missing Values" from_port="example set output" to_op="Join (5)" to_port="left"/>
       <connect from_op="Retrieve T_USERS" from_port="output" to_op="Filter Students" to_port="example set input"/>
