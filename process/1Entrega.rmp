@@ -302,7 +302,7 @@
           <portSpacing port="sink_out 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (5)" width="90" x="179" y="34">
+      <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (5)" width="90" x="380" y="187">
         <parameter key="remove_double_attributes" value="true"/>
         <parameter key="join_type" value="inner"/>
         <parameter key="use_id_attribute_as_key" value="false"/>
@@ -403,7 +403,7 @@
           <portSpacing port="sink_out 2" spacing="0"/>
         </process>
       </operator>
-      <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (3)" width="90" x="313" y="187">
+      <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (3)" width="90" x="380" y="391">
         <parameter key="remove_double_attributes" value="true"/>
         <parameter key="join_type" value="inner"/>
         <parameter key="use_id_attribute_as_key" value="false"/>
@@ -412,11 +412,11 @@
         </list>
         <parameter key="keep_both_join_attributes" value="false"/>
       </operator>
-      <operator activated="true" class="sort" compatibility="8.1.001" expanded="true" height="82" name="Sort" width="90" x="1050" y="238">
+      <operator activated="true" class="sort" compatibility="8.1.001" expanded="true" height="82" name="Sort" width="90" x="782" y="289">
         <parameter key="attribute_name" value="AULA_DATE"/>
         <parameter key="sorting_direction" value="increasing"/>
       </operator>
-      <operator activated="true" class="select_attributes" compatibility="8.1.001" expanded="true" height="82" name="Select Attributes" width="90" x="715" y="187">
+      <operator activated="true" class="select_attributes" compatibility="8.1.001" expanded="true" height="82" name="Select Attributes" width="90" x="983" y="238">
         <parameter key="attribute_filter_type" value="subset"/>
         <parameter key="attribute" value=""/>
         <parameter key="attributes" value="PROF_ID|TURMA_ID|TURNO_ID|TURNOUC"/>
@@ -430,7 +430,7 @@
         <parameter key="invert_selection" value="true"/>
         <parameter key="include_special_attributes" value="false"/>
       </operator>
-      <operator activated="true" class="store" compatibility="8.1.001" expanded="true" height="68" name="Store" width="90" x="849" y="187">
+      <operator activated="true" class="store" compatibility="8.1.001" expanded="true" height="68" name="Store" width="90" x="1117" y="238">
         <parameter key="repository_entry" value="../data/dataset_1entrega"/>
       </operator>
       <connect from_op="retrieve users" from_port="out 1" to_op="Join (5)" to_port="right"/>
