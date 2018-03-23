@@ -30,7 +30,7 @@
           <operator activated="true" class="select_attributes" compatibility="8.1.001" expanded="true" height="82" name="Select Attributes (5)" width="90" x="313" y="34">
             <parameter key="attribute_filter_type" value="subset"/>
             <parameter key="attribute" value=""/>
-            <parameter key="attributes" value="ID|RAMO|REGIME|TURMA_ID"/>
+            <parameter key="attributes" value="ID|RAMO|REGIME"/>
             <parameter key="use_except_expression" value="false"/>
             <parameter key="value_type" value="attribute_value"/>
             <parameter key="use_value_type_exception" value="false"/>
@@ -130,6 +130,25 @@
               <parameter key="Sem Regime" value="average"/>
             </list>
           </operator>
+          <operator activated="true" class="map" compatibility="8.1.001" expanded="true" height="82" name="Map" width="90" x="1117" y="34">
+            <parameter key="attribute_filter_type" value="single"/>
+            <parameter key="attribute" value="REGIME"/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <list key="value_mappings">
+              <parameter key="Noturno" value="Pós-Laboral"/>
+            </list>
+            <parameter key="consider_regular_expressions" value="false"/>
+            <parameter key="add_default_mapping" value="false"/>
+          </operator>
           <connect from_op="Retrieve T_USERS (2)" from_port="output" to_op="Filter Students (2)" to_port="example set input"/>
           <connect from_op="Filter Students (2)" from_port="example set output" to_op="Select Attributes (5)" to_port="example set input"/>
           <connect from_op="Select Attributes (5)" from_port="example set output" to_op="Replace Empty Space (2)" to_port="example set input"/>
@@ -137,7 +156,8 @@
           <connect from_op="Map (2)" from_port="example set output" to_op="Replace 0 (2)" to_port="example set input"/>
           <connect from_op="Replace 0 (2)" from_port="example set output" to_op="Replace Missing Values (2)" to_port="example set input"/>
           <connect from_op="Replace Missing Values (2)" from_port="example set output" to_op="Replace Missing Values (5)" to_port="example set input"/>
-          <connect from_op="Replace Missing Values (5)" from_port="example set output" to_port="out 1"/>
+          <connect from_op="Replace Missing Values (5)" from_port="example set output" to_op="Map" to_port="example set input"/>
+          <connect from_op="Map" from_port="example set output" to_port="out 1"/>
           <portSpacing port="source_in 1" spacing="0"/>
           <portSpacing port="sink_out 1" spacing="0"/>
           <portSpacing port="sink_out 2" spacing="0"/>
@@ -372,7 +392,12 @@
             <parameter key="consider_regular_expressions" value="false"/>
             <parameter key="add_default_mapping" value="false"/>
           </operator>
-          <operator activated="true" class="map" compatibility="8.1.001" expanded="true" height="82" name="Map (8)" width="90" x="581" y="34">
+          <operator activated="true" class="rename" compatibility="8.1.001" expanded="true" height="82" name="Rename" width="90" x="581" y="34">
+            <parameter key="old_name" value="REGIMEUC"/>
+            <parameter key="new_name" value="REGIME_TURNO"/>
+            <list key="rename_additional_attributes"/>
+          </operator>
+          <operator activated="true" class="map" compatibility="8.1.001" expanded="true" height="82" name="Map (8)" width="90" x="715" y="34">
             <parameter key="attribute_filter_type" value="single"/>
             <parameter key="attribute" value="TIPOTURNO"/>
             <parameter key="attributes" value=""/>
@@ -396,7 +421,8 @@
           <connect from_op="Retrieve T_TURNOS (2)" from_port="output" to_op="Select Attributes (13)" to_port="example set input"/>
           <connect from_op="Select Attributes (13)" from_port="example set output" to_op="Map (6)" to_port="example set input"/>
           <connect from_op="Map (6)" from_port="example set output" to_op="Map (7)" to_port="example set input"/>
-          <connect from_op="Map (7)" from_port="example set output" to_op="Map (8)" to_port="example set input"/>
+          <connect from_op="Map (7)" from_port="example set output" to_op="Rename" to_port="example set input"/>
+          <connect from_op="Rename" from_port="example set output" to_op="Map (8)" to_port="example set input"/>
           <connect from_op="Map (8)" from_port="example set output" to_port="out 1"/>
           <portSpacing port="source_in 1" spacing="0"/>
           <portSpacing port="sink_out 1" spacing="0"/>
@@ -480,8 +506,8 @@
         <parameter key="round_values" value="false"/>
       </operator>
       <operator activated="true" class="multiply" compatibility="8.1.001" expanded="true" height="124" name="Multiply" width="90" x="1251" y="187"/>
-      <operator activated="false" class="write_csv" compatibility="8.1.001" expanded="true" height="82" name="Write CSV" width="90" x="1385" y="289">
-        <parameter key="csv_file" value="../data/dataset_1entrega.csv"/>
+      <operator activated="true" class="write_csv" compatibility="8.1.001" expanded="true" height="82" name="Write CSV" width="90" x="1385" y="289">
+        <parameter key="csv_file" value="/Users/rcaceiro/Downloads/dataset1Entrega.csv"/>
         <parameter key="column_separator" value=";"/>
         <parameter key="write_attribute_names" value="true"/>
         <parameter key="quote_nominal_values" value="false"/>
@@ -505,6 +531,7 @@
       <connect from_op="Real to Integer" from_port="example set output" to_op="Multiply" to_port="input"/>
       <connect from_op="Multiply" from_port="output 1" to_op="Store" to_port="input"/>
       <connect from_op="Multiply" from_port="output 2" to_port="result 1"/>
+      <connect from_op="Multiply" from_port="output 3" to_op="Write CSV" to_port="input"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="126"/>
       <portSpacing port="sink_result 2" spacing="0"/>
