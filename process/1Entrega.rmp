@@ -480,8 +480,8 @@
         <parameter key="round_values" value="false"/>
       </operator>
       <operator activated="true" class="multiply" compatibility="8.1.001" expanded="true" height="124" name="Multiply" width="90" x="1251" y="187"/>
-      <operator activated="true" class="write_csv" compatibility="8.1.001" expanded="true" height="82" name="Write CSV" width="90" x="1385" y="289">
-        <parameter key="csv_file" value="/Users/rcaceiro/Downloads/dataset_1entrega.csv"/>
+      <operator activated="false" class="write_csv" compatibility="8.1.001" expanded="true" height="82" name="Write CSV" width="90" x="1385" y="289">
+        <parameter key="csv_file" value="../data/dataset_1entrega.csv"/>
         <parameter key="column_separator" value=";"/>
         <parameter key="write_attribute_names" value="true"/>
         <parameter key="quote_nominal_values" value="false"/>
@@ -505,7 +505,6 @@
       <connect from_op="Real to Integer" from_port="example set output" to_op="Multiply" to_port="input"/>
       <connect from_op="Multiply" from_port="output 1" to_op="Store" to_port="input"/>
       <connect from_op="Multiply" from_port="output 2" to_port="result 1"/>
-      <connect from_op="Multiply" from_port="output 3" to_op="Write CSV" to_port="input"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="126"/>
       <portSpacing port="sink_result 2" spacing="0"/>
