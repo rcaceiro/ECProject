@@ -249,14 +249,6 @@
             </list>
             <parameter key="keep_all" value="true"/>
           </operator>
-          <operator activated="true" class="nominal_to_date" compatibility="8.1.001" expanded="true" height="82" name="Nominal to Date (2)" width="90" x="313" y="442">
-            <parameter key="attribute_name" value="FERIADO_DATE"/>
-            <parameter key="date_type" value="date"/>
-            <parameter key="date_format" value="dd/MM/yyyy"/>
-            <parameter key="time_zone" value="SYSTEM"/>
-            <parameter key="locale" value="English (United States)"/>
-            <parameter key="keep_old_attribute" value="false"/>
-          </operator>
           <operator activated="true" class="concurrency:join" compatibility="8.1.001" expanded="true" height="82" name="Join (2)" width="90" x="983" y="340">
             <parameter key="remove_double_attributes" value="true"/>
             <parameter key="join_type" value="left"/>
@@ -311,8 +303,7 @@
           <connect from_op="Generate Attributes" from_port="example set output" to_op="Join" to_port="right"/>
           <connect from_op="Join" from_port="join" to_op="Join (2)" to_port="left"/>
           <connect from_op="Retrieve T_EXT_FERIADOS" from_port="output" to_op="Generate Attributes (3)" to_port="example set input"/>
-          <connect from_op="Generate Attributes (3)" from_port="example set output" to_op="Nominal to Date (2)" to_port="example set input"/>
-          <connect from_op="Nominal to Date (2)" from_port="example set output" to_op="Join (2)" to_port="right"/>
+          <connect from_op="Generate Attributes (3)" from_port="example set output" to_op="Join (2)" to_port="right"/>
           <connect from_op="Join (2)" from_port="join" to_op="Filter Feriados" to_port="example set input"/>
           <connect from_op="Filter Feriados" from_port="example set output" to_op="Filter Dias Especiais" to_port="example set input"/>
           <connect from_op="Filter Dias Especiais" from_port="example set output" to_op="Select Attributes (3)" to_port="example set input"/>
