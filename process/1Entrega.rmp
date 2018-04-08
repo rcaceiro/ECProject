@@ -505,7 +505,7 @@
         <parameter key="include_special_attributes" value="false"/>
         <parameter key="round_values" value="false"/>
       </operator>
-      <operator activated="true" class="multiply" compatibility="8.1.001" expanded="true" height="124" name="Multiply" width="90" x="1251" y="187"/>
+      <operator activated="true" class="multiply" compatibility="8.1.001" expanded="true" height="103" name="Multiply" width="90" x="1251" y="187"/>
       <operator activated="false" class="write_csv" compatibility="8.1.001" expanded="true" height="82" name="Write CSV" width="90" x="1385" y="289">
         <parameter key="csv_file" value="/Users/rcaceiro/Downloads/dataset1Entrega.csv"/>
         <parameter key="column_separator" value=";"/>
