@@ -524,7 +524,8 @@
       <connect from_op="Multiply" from_port="output 2" to_port="result 1"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="126"/>
-      <portSpacing port="sink_result 2" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="210"/>
+      <portSpacing port="sink_result 3" spacing="0"/>
     </process>
   </operator>
 </process>
