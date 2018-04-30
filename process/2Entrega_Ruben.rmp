@@ -501,7 +501,7 @@
       <operator activated="false" class="store" compatibility="8.1.001" expanded="true" height="68" name="Store" width="90" x="1787" y="34">
         <parameter key="repository_entry" value="../data/dataset_1entrega"/>
       </operator>
-      <operator activated="true" class="subprocess" compatibility="8.1.001" expanded="true" height="82" name="retrieve class presences (2)" width="90" x="45" y="493">
+      <operator activated="true" breakpoints="after" class="subprocess" compatibility="8.1.001" expanded="true" height="82" name="retrieve class presences (2)" width="90" x="45" y="493">
         <process expanded="true">
           <operator activated="true" class="retrieve" compatibility="8.1.001" expanded="true" height="68" name="Retrieve T_PRESENCAS (3)" width="90" x="45" y="85">
             <parameter key="repository_entry" value="../data/T_PRESENCAS"/>
