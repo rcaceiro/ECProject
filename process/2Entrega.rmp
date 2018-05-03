@@ -2429,12 +2429,12 @@
         <list key="application_parameters"/>
         <parameter key="create_view" value="false"/>
       </operator>
-      <operator activated="true" class="rename" compatibility="8.1.003" expanded="true" height="82" name="Rename (6)" width="90" x="1921" y="748">
+      <operator activated="true" class="rename" compatibility="8.1.003" expanded="true" height="82" name="Rename (6)" width="90" x="1854" y="748">
         <parameter key="old_name" value="prediction(PRESENTE)"/>
         <parameter key="new_name" value="PRESENTE"/>
         <list key="rename_additional_attributes"/>
       </operator>
-      <operator activated="true" class="select_attributes" compatibility="8.1.003" expanded="true" height="82" name="Select Attributes (9)" width="90" x="2055" y="748">
+      <operator activated="true" class="select_attributes" compatibility="8.1.003" expanded="true" height="82" name="Select Attributes (9)" width="90" x="2189" y="748">
         <parameter key="attribute_filter_type" value="subset"/>
         <parameter key="attribute" value=""/>
         <parameter key="attributes" value="PRESENTE|ID"/>
