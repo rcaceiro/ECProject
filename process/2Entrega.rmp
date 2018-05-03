@@ -1085,19 +1085,19 @@
             </list>
             <parameter key="keep_both_join_attributes" value="false"/>
           </operator>
-          <operator activated="true" class="generate_attributes" compatibility="8.1.003" expanded="true" height="82" name="Generate Attributes (23)" width="90" x="3596" y="289">
+          <operator activated="true" class="generate_attributes" compatibility="8.1.003" expanded="true" height="82" name="Generate Attributes (23)" width="90" x="3663" y="595">
             <list key="function_descriptions">
               <parameter key="IS_EPOCA_ESPECIAL" value="if (SEMANA == 43, true, false)"/>
             </list>
             <parameter key="keep_all" value="true"/>
           </operator>
-          <operator activated="true" class="generate_attributes" compatibility="8.1.003" expanded="true" height="82" name="Generate Attributes (11)" width="90" x="3730" y="187">
+          <operator activated="true" class="generate_attributes" compatibility="8.1.003" expanded="true" height="82" name="Generate Attributes (11)" width="90" x="3797" y="595">
             <list key="function_descriptions">
               <parameter key="DURACAO" value="(parse(cut(HORAFIM, 0, 2)) * 60 + parse(cut(HORAFIM, 3, 2))) - (parse(cut(HORAINICIO, 0, 2)) * 60 + parse(cut(HORAINICIO, 3, 2)))"/>
             </list>
             <parameter key="keep_all" value="true"/>
           </operator>
-          <operator activated="true" class="replace_missing_values" compatibility="8.1.003" expanded="true" height="103" name="Replace Missing Values (13)" width="90" x="3864" y="34">
+          <operator activated="true" class="replace_missing_values" compatibility="8.1.003" expanded="true" height="103" name="Replace Missing Values (13)" width="90" x="3931" y="595">
             <parameter key="return_preprocessing_model" value="false"/>
             <parameter key="create_view" value="false"/>
             <parameter key="attribute_filter_type" value="single"/>
@@ -1116,7 +1116,7 @@
             <list key="columns"/>
             <parameter key="replenishment_value" value="false"/>
           </operator>
-          <operator activated="true" class="replace_missing_values" compatibility="8.1.003" expanded="true" height="103" name="Replace Missing Values (15)" width="90" x="3998" y="34">
+          <operator activated="true" class="replace_missing_values" compatibility="8.1.003" expanded="true" height="103" name="Replace Missing Values (15)" width="90" x="4065" y="595">
             <parameter key="return_preprocessing_model" value="false"/>
             <parameter key="create_view" value="false"/>
             <parameter key="attribute_filter_type" value="single"/>
@@ -1135,7 +1135,7 @@
             <list key="columns"/>
             <parameter key="replenishment_value" value="false"/>
           </operator>
-          <operator activated="true" class="generate_attributes" compatibility="8.1.003" expanded="true" height="82" name="Generate Attributes (24)" width="90" x="4199" y="34">
+          <operator activated="true" class="generate_attributes" compatibility="8.1.003" expanded="true" height="82" name="Generate Attributes (24)" width="90" x="4199" y="595">
             <list key="function_descriptions">
               <parameter key="IS_AULA_CEDO" value="if(parse(cut(HORAINICIO, 0, 2)) &lt; 10, true, false)"/>
               <parameter key="IS_AULA_CEDO_REGIME" value="if((parse(cut(HORAINICIO, 0, 2)) &lt; 10 &amp;&amp; REGIME == &quot;Diurno&quot;) || (parse(cut(HORAINICIO, 0, 2)) &lt; 19 &amp;&amp; REGIME == &quot;Noturno&quot;), true, false)"/>
@@ -1143,10 +1143,79 @@
             </list>
             <parameter key="keep_all" value="true"/>
           </operator>
-          <operator activated="true" class="select_attributes" compatibility="8.1.003" expanded="true" height="82" name="Select Attributes (20)" width="90" x="4333" y="34">
+          <operator activated="true" class="retrieve" compatibility="8.1.003" expanded="true" height="68" name="Retrieve areas-cientificas" width="90" x="4199" y="799">
+            <parameter key="repository_entry" value="../data/areas-cientificas"/>
+          </operator>
+          <operator activated="true" class="concurrency:join" compatibility="8.1.003" expanded="true" height="82" name="Join (19)" width="90" x="4400" y="595">
+            <parameter key="remove_double_attributes" value="true"/>
+            <parameter key="join_type" value="left"/>
+            <parameter key="use_id_attribute_as_key" value="false"/>
+            <list key="key_attributes">
+              <parameter key="NOMEUC" value="Unidade Curricular"/>
+            </list>
+            <parameter key="keep_both_join_attributes" value="false"/>
+          </operator>
+          <operator activated="true" class="multiply" compatibility="8.1.003" expanded="true" height="103" name="Multiply (7)" width="90" x="4601" y="595"/>
+          <operator activated="true" class="parse_numbers" compatibility="8.1.003" expanded="true" height="82" name="Parse Numbers (3)" width="90" x="4735" y="748">
+            <parameter key="attribute_filter_type" value="single"/>
+            <parameter key="attribute" value="ANOUC"/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="nominal"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="file_path"/>
+            <parameter key="block_type" value="single_value"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="single_value"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="decimal_character" value="."/>
+            <parameter key="grouped_digits" value="false"/>
+            <parameter key="grouping_character" value=","/>
+            <parameter key="unparsable_value_handling" value="fail"/>
+          </operator>
+          <operator activated="true" class="aggregate" compatibility="8.1.003" expanded="true" height="82" name="Aggregate" width="90" x="4869" y="748">
+            <parameter key="use_default_aggregation" value="false"/>
+            <parameter key="attribute_filter_type" value="all"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="default_aggregation_function" value="average"/>
+            <list key="aggregation_attributes">
+              <parameter key="ANOUC" value="average"/>
+            </list>
+            <parameter key="group_by_attributes" value="USER_ID"/>
+            <parameter key="count_all_combinations" value="false"/>
+            <parameter key="only_distinct" value="false"/>
+            <parameter key="ignore_missings" value="true"/>
+          </operator>
+          <operator activated="true" class="concurrency:join" compatibility="8.1.003" expanded="true" height="82" name="Join (23)" width="90" x="4936" y="595">
+            <parameter key="remove_double_attributes" value="true"/>
+            <parameter key="join_type" value="inner"/>
+            <parameter key="use_id_attribute_as_key" value="false"/>
+            <list key="key_attributes">
+              <parameter key="USER_ID" value="USER_ID"/>
+            </list>
+            <parameter key="keep_both_join_attributes" value="false"/>
+          </operator>
+          <operator activated="true" class="generate_attributes" compatibility="8.1.003" expanded="true" height="82" name="Generate Attributes (26)" width="90" x="5070" y="595">
+            <list key="function_descriptions">
+              <parameter key="REPETENTE" value="if([average(ANOUC)] &lt; parse(ANOUC), true, false)"/>
+            </list>
+            <parameter key="keep_all" value="true"/>
+          </operator>
+          <operator activated="true" class="select_attributes" compatibility="8.1.003" expanded="true" height="82" name="Select Attributes (20)" width="90" x="5204" y="595">
             <parameter key="attribute_filter_type" value="subset"/>
             <parameter key="attribute" value=""/>
-            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|DIASEMANA|HORAFIM|HORAINICIO|ID|IS_EPOCA_ESPECIAL|IS_PRIMEIRA_SEMANA|IS_ULTIMA_SEMANA|IS_VESPERA_FERIADO|NOMEUC|NR_UCS|RAMO|REGIME|REGIMEUC|TIPOTURNO|USER_ID|IS_AULA_CEDO_REGIME"/>
+            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|DIASEMANA|ID|IS_PRIMEIRA_SEMANA|IS_ULTIMA_SEMANA|IS_VESPERA_FERIADO|NOMEUC|NR_UCS|RAMO|REGIMEUC|USER_ID|Área Científica|REPETENTE"/>
             <parameter key="use_except_expression" value="false"/>
             <parameter key="value_type" value="attribute_value"/>
             <parameter key="use_value_type_exception" value="false"/>
@@ -1199,12 +1268,20 @@
           <connect from_op="Generate Attributes (11)" from_port="example set output" to_op="Replace Missing Values (13)" to_port="example set input"/>
           <connect from_op="Replace Missing Values (13)" from_port="example set output" to_op="Replace Missing Values (15)" to_port="example set input"/>
           <connect from_op="Replace Missing Values (15)" from_port="example set output" to_op="Generate Attributes (24)" to_port="example set input"/>
-          <connect from_op="Generate Attributes (24)" from_port="example set output" to_op="Select Attributes (20)" to_port="example set input"/>
+          <connect from_op="Generate Attributes (24)" from_port="example set output" to_op="Join (19)" to_port="left"/>
+          <connect from_op="Retrieve areas-cientificas" from_port="output" to_op="Join (19)" to_port="right"/>
+          <connect from_op="Join (19)" from_port="join" to_op="Multiply (7)" to_port="input"/>
+          <connect from_op="Multiply (7)" from_port="output 1" to_op="Join (23)" to_port="left"/>
+          <connect from_op="Multiply (7)" from_port="output 2" to_op="Parse Numbers (3)" to_port="example set input"/>
+          <connect from_op="Parse Numbers (3)" from_port="example set output" to_op="Aggregate" to_port="example set input"/>
+          <connect from_op="Aggregate" from_port="example set output" to_op="Join (23)" to_port="right"/>
+          <connect from_op="Join (23)" from_port="join" to_op="Generate Attributes (26)" to_port="example set input"/>
+          <connect from_op="Generate Attributes (26)" from_port="example set output" to_op="Select Attributes (20)" to_port="example set input"/>
           <connect from_op="Select Attributes (20)" from_port="example set output" to_port="out 1"/>
           <portSpacing port="source_in 1" spacing="0"/>
           <portSpacing port="source_in 2" spacing="0"/>
-          <portSpacing port="sink_out 1" spacing="0"/>
-          <portSpacing port="sink_out 2" spacing="0"/>
+          <portSpacing port="sink_out 1" spacing="567"/>
+          <portSpacing port="sink_out 2" spacing="21"/>
         </process>
       </operator>
       <operator activated="true" class="subprocess" compatibility="8.1.003" expanded="true" height="82" name="Cleaning" width="90" x="313" y="493">
@@ -1295,6 +1372,88 @@
           <portSpacing port="sink_out 2" spacing="0"/>
         </process>
       </operator>
+      <operator activated="false" class="parse_numbers" compatibility="8.1.003" expanded="true" height="82" name="Parse Numbers (2)" width="90" x="715" y="646">
+        <parameter key="attribute_filter_type" value="single"/>
+        <parameter key="attribute" value="PRESENTE"/>
+        <parameter key="attributes" value="PRESENTE"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="nominal"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="file_path"/>
+        <parameter key="block_type" value="single_value"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="single_value"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="true"/>
+        <parameter key="decimal_character" value="."/>
+        <parameter key="grouped_digits" value="false"/>
+        <parameter key="grouping_character" value=","/>
+        <parameter key="unparsable_value_handling" value="fail"/>
+      </operator>
+      <operator activated="false" class="aggregate" compatibility="8.1.003" expanded="true" height="82" name="Aggregate (7)" width="90" x="849" y="646">
+        <parameter key="use_default_aggregation" value="false"/>
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="default_aggregation_function" value="average"/>
+        <list key="aggregation_attributes">
+          <parameter key="PRESENTE" value="count"/>
+          <parameter key="PRESENTE" value="sum"/>
+        </list>
+        <parameter key="group_by_attributes" value="NOMEUC"/>
+        <parameter key="count_all_combinations" value="false"/>
+        <parameter key="only_distinct" value="false"/>
+        <parameter key="ignore_missings" value="true"/>
+      </operator>
+      <operator activated="false" class="generate_attributes" compatibility="8.1.003" expanded="true" height="82" name="Generate Attributes (21)" width="90" x="983" y="646">
+        <list key="function_descriptions">
+          <parameter key="PERCENTAGEM_PRESENCAS_UC" value="[sum(PRESENTE)] / [count(PRESENTE)] * 100"/>
+        </list>
+        <parameter key="keep_all" value="true"/>
+      </operator>
+      <operator activated="false" class="select_attributes" compatibility="8.1.003" expanded="true" height="82" name="Select Attributes (18)" width="90" x="1117" y="646">
+        <parameter key="attribute_filter_type" value="subset"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="PERCENTAGEM_PRESENCAS_UC|NOMEUC"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+      </operator>
+      <operator activated="false" class="multiply" compatibility="8.1.003" expanded="true" height="68" name="Multiply (10)" width="90" x="1251" y="646"/>
+      <operator activated="false" class="filter_examples" compatibility="8.1.003" expanded="true" height="103" name="Filter Examples" width="90" x="1586" y="544">
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="custom_filters"/>
+        <parameter key="invert_filter" value="false"/>
+        <list key="filters_list">
+          <parameter key="filters_entry_key" value="presence_percentage.gt.10"/>
+        </list>
+        <parameter key="filters_logic_and" value="true"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
+      <operator activated="false" class="concurrency:join" compatibility="8.1.003" expanded="true" height="82" name="Join (21)" width="90" x="1385" y="1003">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="left"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="NOMEUC" value="NOMEUC"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
       <operator activated="true" class="multiply" compatibility="8.1.003" expanded="true" height="103" name="Multiply (2)" width="90" x="581" y="493"/>
       <operator activated="true" class="parse_numbers" compatibility="8.1.003" expanded="true" height="82" name="Parse Numbers" width="90" x="715" y="748">
         <parameter key="attribute_filter_type" value="single"/>
@@ -1377,69 +1536,6 @@
         <list key="columns"/>
         <parameter key="replenishment_value" value="false"/>
       </operator>
-      <operator activated="false" class="parse_numbers" compatibility="8.1.003" expanded="true" height="82" name="Parse Numbers (2)" width="90" x="715" y="646">
-        <parameter key="attribute_filter_type" value="single"/>
-        <parameter key="attribute" value="PRESENTE"/>
-        <parameter key="attributes" value="PRESENTE"/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="nominal"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="file_path"/>
-        <parameter key="block_type" value="single_value"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="single_value"/>
-        <parameter key="invert_selection" value="false"/>
-        <parameter key="include_special_attributes" value="true"/>
-        <parameter key="decimal_character" value="."/>
-        <parameter key="grouped_digits" value="false"/>
-        <parameter key="grouping_character" value=","/>
-        <parameter key="unparsable_value_handling" value="fail"/>
-      </operator>
-      <operator activated="false" class="aggregate" compatibility="8.1.003" expanded="true" height="82" name="Aggregate (7)" width="90" x="849" y="646">
-        <parameter key="use_default_aggregation" value="false"/>
-        <parameter key="attribute_filter_type" value="all"/>
-        <parameter key="attribute" value=""/>
-        <parameter key="attributes" value=""/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="attribute_value"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="time"/>
-        <parameter key="block_type" value="attribute_block"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_matrix_row_start"/>
-        <parameter key="invert_selection" value="false"/>
-        <parameter key="include_special_attributes" value="false"/>
-        <parameter key="default_aggregation_function" value="average"/>
-        <list key="aggregation_attributes">
-          <parameter key="PRESENTE" value="count"/>
-          <parameter key="PRESENTE" value="sum"/>
-        </list>
-        <parameter key="group_by_attributes" value="NOMEUC"/>
-        <parameter key="count_all_combinations" value="false"/>
-        <parameter key="only_distinct" value="false"/>
-        <parameter key="ignore_missings" value="true"/>
-      </operator>
-      <operator activated="false" class="generate_attributes" compatibility="8.1.003" expanded="true" height="82" name="Generate Attributes (21)" width="90" x="983" y="646">
-        <list key="function_descriptions">
-          <parameter key="PERCENTAGEM_PRESENCAS_UC" value="[sum(PRESENTE)] / [count(PRESENTE)] * 100"/>
-        </list>
-        <parameter key="keep_all" value="true"/>
-      </operator>
-      <operator activated="false" class="select_attributes" compatibility="8.1.003" expanded="true" height="82" name="Select Attributes (18)" width="90" x="1117" y="646">
-        <parameter key="attribute_filter_type" value="subset"/>
-        <parameter key="attribute" value=""/>
-        <parameter key="attributes" value="PERCENTAGEM_PRESENCAS_UC|NOMEUC"/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="attribute_value"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="time"/>
-        <parameter key="block_type" value="attribute_block"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_matrix_row_start"/>
-        <parameter key="invert_selection" value="false"/>
-        <parameter key="include_special_attributes" value="false"/>
-      </operator>
-      <operator activated="false" class="multiply" compatibility="8.1.003" expanded="true" height="68" name="Multiply (10)" width="90" x="1251" y="646"/>
       <operator activated="true" class="concurrency:join" compatibility="8.1.003" expanded="true" height="82" name="Join (24)" width="90" x="1452" y="493">
         <parameter key="remove_double_attributes" value="true"/>
         <parameter key="join_type" value="left"/>
@@ -1448,16 +1544,6 @@
           <parameter key="USER_ID" value="USER_ID"/>
         </list>
         <parameter key="keep_both_join_attributes" value="false"/>
-      </operator>
-      <operator activated="false" class="filter_examples" compatibility="8.1.003" expanded="true" height="103" name="Filter Examples" width="90" x="1586" y="544">
-        <parameter key="parameter_expression" value=""/>
-        <parameter key="condition_class" value="custom_filters"/>
-        <parameter key="invert_filter" value="false"/>
-        <list key="filters_list">
-          <parameter key="filters_entry_key" value="presence_percentage.gt.10"/>
-        </list>
-        <parameter key="filters_logic_and" value="true"/>
-        <parameter key="filters_check_metadata" value="true"/>
       </operator>
       <operator activated="true" class="select_attributes" compatibility="8.1.003" expanded="true" height="82" name="Select Attributes (11)" width="90" x="1653" y="340">
         <parameter key="attribute_filter_type" value="subset"/>
@@ -1473,8 +1559,117 @@
         <parameter key="invert_selection" value="true"/>
         <parameter key="include_special_attributes" value="true"/>
       </operator>
-      <operator activated="true" class="multiply" compatibility="8.1.003" expanded="true" height="103" name="Multiply (9)" width="90" x="1787" y="340"/>
-      <operator activated="true" class="concurrency:cross_validation" compatibility="8.1.003" expanded="true" height="145" name="Cross Validation" width="90" x="1988" y="289">
+      <operator activated="false" class="optimize_selection_brute_force" compatibility="8.1.003" expanded="true" height="103" name="Optimize Selection (Brute Force)" width="90" x="2055" y="85">
+        <parameter key="use_exact_number_of_attributes" value="false"/>
+        <parameter key="restrict_maximum" value="false"/>
+        <parameter key="min_number_of_attributes" value="1"/>
+        <parameter key="max_number_of_attributes" value="1"/>
+        <parameter key="exact_number_of_attributes" value="1"/>
+        <parameter key="normalize_weights" value="true"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <parameter key="user_result_individual_selection" value="false"/>
+        <parameter key="show_population_plotter" value="false"/>
+        <parameter key="plot_generations" value="10"/>
+        <parameter key="constraint_draw_range" value="false"/>
+        <parameter key="draw_dominated_points" value="true"/>
+        <parameter key="maximal_fitness" value="Infinity"/>
+        <process expanded="true">
+          <operator activated="true" class="concurrency:cross_validation" compatibility="8.1.003" expanded="true" height="145" name="Cross Validation (2)" width="90" x="447" y="238">
+            <parameter key="split_on_batch_attribute" value="false"/>
+            <parameter key="leave_one_out" value="false"/>
+            <parameter key="number_of_folds" value="10"/>
+            <parameter key="sampling_type" value="automatic"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="enable_parallel_execution" value="true"/>
+            <process expanded="true">
+              <operator activated="true" class="naive_bayes" compatibility="8.1.003" expanded="true" height="82" name="Naive Bayes (2)" width="90" x="246" y="34">
+                <parameter key="laplace_correction" value="true"/>
+              </operator>
+              <operator activated="false" class="h2o:deep_learning" compatibility="7.6.001" expanded="true" height="82" name="Deep Learning (2)" width="90" x="112" y="238">
+                <parameter key="activation" value="Rectifier"/>
+                <enumeration key="hidden_layer_sizes">
+                  <parameter key="hidden_layer_sizes" value="50"/>
+                  <parameter key="hidden_layer_sizes" value="50"/>
+                </enumeration>
+                <enumeration key="hidden_dropout_ratios"/>
+                <parameter key="reproducible_(uses_1_thread)" value="false"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+                <parameter key="epochs" value="10.0"/>
+                <parameter key="compute_variable_importances" value="false"/>
+                <parameter key="train_samples_per_iteration" value="-2"/>
+                <parameter key="adaptive_rate" value="true"/>
+                <parameter key="epsilon" value="1.0E-8"/>
+                <parameter key="rho" value="0.99"/>
+                <parameter key="learning_rate" value="0.005"/>
+                <parameter key="learning_rate_annealing" value="1.0E-6"/>
+                <parameter key="learning_rate_decay" value="1.0"/>
+                <parameter key="momentum_start" value="0.0"/>
+                <parameter key="momentum_ramp" value="1000000.0"/>
+                <parameter key="momentum_stable" value="0.0"/>
+                <parameter key="nesterov_accelerated_gradient" value="true"/>
+                <parameter key="standardize" value="true"/>
+                <parameter key="L1" value="1.0E-5"/>
+                <parameter key="L2" value="0.0"/>
+                <parameter key="max_w2" value="10.0"/>
+                <parameter key="loss_function" value="Automatic"/>
+                <parameter key="distribution_function" value="AUTO"/>
+                <parameter key="early_stopping" value="false"/>
+                <parameter key="stopping_rounds" value="1"/>
+                <parameter key="stopping_metric" value="AUTO"/>
+                <parameter key="stopping_tolerance" value="0.001"/>
+                <parameter key="missing_values_handling" value="MeanImputation"/>
+                <parameter key="max_runtime_seconds" value="0"/>
+                <list key="expert_parameters"/>
+                <list key="expert_parameters_"/>
+              </operator>
+              <connect from_port="training set" to_op="Naive Bayes (2)" to_port="training set"/>
+              <connect from_op="Naive Bayes (2)" from_port="model" to_port="model"/>
+              <portSpacing port="source_training set" spacing="0"/>
+              <portSpacing port="sink_model" spacing="0"/>
+              <portSpacing port="sink_through 1" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="apply_model" compatibility="8.1.003" expanded="true" height="82" name="Apply Model (2)" width="90" x="112" y="34">
+                <list key="application_parameters"/>
+                <parameter key="create_view" value="false"/>
+              </operator>
+              <operator activated="true" class="performance" compatibility="8.1.003" expanded="true" height="82" name="Performance (2)" width="90" x="380" y="34">
+                <parameter key="use_example_weights" value="true"/>
+              </operator>
+              <connect from_port="model" to_op="Apply Model (2)" to_port="model"/>
+              <connect from_port="test set" to_op="Apply Model (2)" to_port="unlabelled data"/>
+              <connect from_op="Apply Model (2)" from_port="labelled data" to_op="Performance (2)" to_port="labelled data"/>
+              <connect from_op="Performance (2)" from_port="performance" to_port="performance 1"/>
+              <portSpacing port="source_model" spacing="0"/>
+              <portSpacing port="source_test set" spacing="0"/>
+              <portSpacing port="source_through 1" spacing="0"/>
+              <portSpacing port="sink_test set results" spacing="0"/>
+              <portSpacing port="sink_performance 1" spacing="0"/>
+              <portSpacing port="sink_performance 2" spacing="0"/>
+            </process>
+          </operator>
+          <operator activated="true" class="log" compatibility="8.1.003" expanded="true" height="82" name="Log" width="90" x="648" y="238">
+            <parameter key="filename" value="/home/gaming/ricardomaltez@gmail.com/ComputerEngineering/3.ano/2-Semester/EngenhariaDeConhecimento/rapid-miner-repository/ECProject/data/log.log"/>
+            <list key="log">
+              <parameter key="performance" value="operator.Cross Validation (2).value.performance main criterion"/>
+            </list>
+            <parameter key="sorting_type" value="none"/>
+            <parameter key="sorting_k" value="100"/>
+            <parameter key="persistent" value="false"/>
+          </operator>
+          <connect from_port="example set" to_op="Cross Validation (2)" to_port="example set"/>
+          <connect from_op="Cross Validation (2)" from_port="performance 1" to_op="Log" to_port="through 1"/>
+          <connect from_op="Log" from_port="through 1" to_port="performance"/>
+          <portSpacing port="source_example set" spacing="0"/>
+          <portSpacing port="source_through 1" spacing="0"/>
+          <portSpacing port="sink_performance" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="8.1.003" expanded="true" height="103" name="Multiply (9)" width="90" x="1988" y="340"/>
+      <operator activated="true" class="concurrency:cross_validation" compatibility="8.1.003" expanded="true" height="145" name="Cross Validation" width="90" x="2122" y="289">
         <parameter key="split_on_batch_attribute" value="false"/>
         <parameter key="leave_one_out" value="false"/>
         <parameter key="number_of_folds" value="10"/>
@@ -1524,6 +1719,26 @@
             <list key="expert_parameters"/>
             <list key="expert_parameters_"/>
           </operator>
+          <operator activated="false" class="h2o:gradient_boosted_trees" compatibility="7.6.001" expanded="true" height="103" name="Gradient Boosted Trees" width="90" x="246" y="340">
+            <parameter key="number_of_trees" value="20"/>
+            <parameter key="reproducible" value="false"/>
+            <parameter key="maximum_number_of_threads" value="4"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="maximal_depth" value="5"/>
+            <parameter key="min_rows" value="10.0"/>
+            <parameter key="min_split_improvement" value="0.0"/>
+            <parameter key="number_of_bins" value="20"/>
+            <parameter key="learning_rate" value="0.1"/>
+            <parameter key="sample_rate" value="1.0"/>
+            <parameter key="distribution" value="AUTO"/>
+            <parameter key="early_stopping" value="false"/>
+            <parameter key="stopping_rounds" value="1"/>
+            <parameter key="stopping_metric" value="AUTO"/>
+            <parameter key="stopping_tolerance" value="0.001"/>
+            <parameter key="max_runtime_seconds" value="0"/>
+            <list key="expert_parameters"/>
+          </operator>
           <connect from_port="training set" to_op="Deep Learning" to_port="training set"/>
           <connect from_op="Deep Learning" from_port="model" to_port="model"/>
           <portSpacing port="source_training set" spacing="0"/>
@@ -1549,15 +1764,6 @@
           <portSpacing port="sink_performance 1" spacing="0"/>
           <portSpacing port="sink_performance 2" spacing="0"/>
         </process>
-      </operator>
-      <operator activated="false" class="concurrency:join" compatibility="8.1.003" expanded="true" height="82" name="Join (21)" width="90" x="1385" y="1003">
-        <parameter key="remove_double_attributes" value="true"/>
-        <parameter key="join_type" value="left"/>
-        <parameter key="use_id_attribute_as_key" value="false"/>
-        <list key="key_attributes">
-          <parameter key="NOMEUC" value="NOMEUC"/>
-        </list>
-        <parameter key="keep_both_join_attributes" value="false"/>
       </operator>
       <operator activated="true" class="subprocess" compatibility="8.1.003" expanded="true" height="82" name="Generate (2)" width="90" x="1117" y="901">
         <process expanded="true">
@@ -1974,19 +2180,19 @@
             </list>
             <parameter key="keep_both_join_attributes" value="false"/>
           </operator>
-          <operator activated="true" class="generate_attributes" compatibility="8.1.003" expanded="true" height="82" name="Generate Attributes (19)" width="90" x="3596" y="289">
+          <operator activated="true" class="generate_attributes" compatibility="8.1.003" expanded="true" height="82" name="Generate Attributes (19)" width="90" x="3663" y="595">
             <list key="function_descriptions">
               <parameter key="IS_EPOCA_ESPECIAL" value="if (SEMANA == 43, true, false)"/>
             </list>
             <parameter key="keep_all" value="true"/>
           </operator>
-          <operator activated="true" class="generate_attributes" compatibility="8.1.003" expanded="true" height="82" name="Generate Attributes (22)" width="90" x="3730" y="187">
+          <operator activated="true" class="generate_attributes" compatibility="8.1.003" expanded="true" height="82" name="Generate Attributes (22)" width="90" x="3797" y="595">
             <list key="function_descriptions">
               <parameter key="DURACAO" value="(parse(cut(HORAFIM, 0, 2)) * 60 + parse(cut(HORAFIM, 3, 2))) - (parse(cut(HORAINICIO, 0, 2)) * 60 + parse(cut(HORAINICIO, 3, 2)))"/>
             </list>
             <parameter key="keep_all" value="true"/>
           </operator>
-          <operator activated="true" class="replace_missing_values" compatibility="8.1.003" expanded="true" height="103" name="Replace Missing Values (10)" width="90" x="3864" y="34">
+          <operator activated="true" class="replace_missing_values" compatibility="8.1.003" expanded="true" height="103" name="Replace Missing Values (10)" width="90" x="3931" y="595">
             <parameter key="return_preprocessing_model" value="false"/>
             <parameter key="create_view" value="false"/>
             <parameter key="attribute_filter_type" value="single"/>
@@ -2005,7 +2211,7 @@
             <list key="columns"/>
             <parameter key="replenishment_value" value="false"/>
           </operator>
-          <operator activated="true" class="replace_missing_values" compatibility="8.1.003" expanded="true" height="103" name="Replace Missing Values (14)" width="90" x="3998" y="34">
+          <operator activated="true" class="replace_missing_values" compatibility="8.1.003" expanded="true" height="103" name="Replace Missing Values (14)" width="90" x="4065" y="595">
             <parameter key="return_preprocessing_model" value="false"/>
             <parameter key="create_view" value="false"/>
             <parameter key="attribute_filter_type" value="single"/>
@@ -2024,7 +2230,7 @@
             <list key="columns"/>
             <parameter key="replenishment_value" value="false"/>
           </operator>
-          <operator activated="true" class="generate_attributes" compatibility="8.1.003" expanded="true" height="82" name="Generate Attributes (25)" width="90" x="4199" y="34">
+          <operator activated="true" class="generate_attributes" compatibility="8.1.003" expanded="true" height="82" name="Generate Attributes (25)" width="90" x="4199" y="595">
             <list key="function_descriptions">
               <parameter key="IS_AULA_CEDO" value="if(parse(cut(HORAINICIO, 0, 2)) &lt; 10, true, false)"/>
               <parameter key="IS_AULA_CEDO_REGIME" value="if((parse(cut(HORAINICIO, 0, 2)) &lt; 10 &amp;&amp; REGIME == &quot;Diurno&quot;) || (parse(cut(HORAINICIO, 0, 2)) &lt; 19 &amp;&amp; REGIME == &quot;Noturno&quot;), true, false)"/>
@@ -2032,10 +2238,79 @@
             </list>
             <parameter key="keep_all" value="true"/>
           </operator>
-          <operator activated="true" class="select_attributes" compatibility="8.1.003" expanded="true" height="82" name="Select Attributes (21)" width="90" x="4333" y="34">
+          <operator activated="true" class="retrieve" compatibility="8.1.003" expanded="true" height="68" name="Retrieve areas-cientificas (2)" width="90" x="4199" y="799">
+            <parameter key="repository_entry" value="../data/areas-cientificas"/>
+          </operator>
+          <operator activated="true" class="concurrency:join" compatibility="8.1.003" expanded="true" height="82" name="Join (20)" width="90" x="4400" y="595">
+            <parameter key="remove_double_attributes" value="true"/>
+            <parameter key="join_type" value="left"/>
+            <parameter key="use_id_attribute_as_key" value="false"/>
+            <list key="key_attributes">
+              <parameter key="NOMEUC" value="Unidade Curricular"/>
+            </list>
+            <parameter key="keep_both_join_attributes" value="false"/>
+          </operator>
+          <operator activated="true" class="multiply" compatibility="8.1.003" expanded="true" height="103" name="Multiply (12)" width="90" x="4601" y="595"/>
+          <operator activated="true" class="parse_numbers" compatibility="8.1.003" expanded="true" height="82" name="Parse Numbers (4)" width="90" x="4735" y="748">
+            <parameter key="attribute_filter_type" value="single"/>
+            <parameter key="attribute" value="ANOUC"/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="nominal"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="file_path"/>
+            <parameter key="block_type" value="single_value"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="single_value"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="decimal_character" value="."/>
+            <parameter key="grouped_digits" value="false"/>
+            <parameter key="grouping_character" value=","/>
+            <parameter key="unparsable_value_handling" value="fail"/>
+          </operator>
+          <operator activated="true" class="aggregate" compatibility="8.1.003" expanded="true" height="82" name="Aggregate (9)" width="90" x="4869" y="748">
+            <parameter key="use_default_aggregation" value="false"/>
+            <parameter key="attribute_filter_type" value="all"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="default_aggregation_function" value="average"/>
+            <list key="aggregation_attributes">
+              <parameter key="ANOUC" value="average"/>
+            </list>
+            <parameter key="group_by_attributes" value="USER_ID"/>
+            <parameter key="count_all_combinations" value="false"/>
+            <parameter key="only_distinct" value="false"/>
+            <parameter key="ignore_missings" value="true"/>
+          </operator>
+          <operator activated="true" class="concurrency:join" compatibility="8.1.003" expanded="true" height="82" name="Join (25)" width="90" x="4936" y="595">
+            <parameter key="remove_double_attributes" value="true"/>
+            <parameter key="join_type" value="inner"/>
+            <parameter key="use_id_attribute_as_key" value="false"/>
+            <list key="key_attributes">
+              <parameter key="USER_ID" value="USER_ID"/>
+            </list>
+            <parameter key="keep_both_join_attributes" value="false"/>
+          </operator>
+          <operator activated="true" class="generate_attributes" compatibility="8.1.003" expanded="true" height="82" name="Generate Attributes (27)" width="90" x="5070" y="595">
+            <list key="function_descriptions">
+              <parameter key="REPETENTE" value="if([average(ANOUC)] &lt; parse(ANOUC), true, false)"/>
+            </list>
+            <parameter key="keep_all" value="true"/>
+          </operator>
+          <operator activated="true" class="select_attributes" compatibility="8.1.003" expanded="true" height="82" name="Select Attributes (21)" width="90" x="5204" y="595">
             <parameter key="attribute_filter_type" value="subset"/>
             <parameter key="attribute" value=""/>
-            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|DIASEMANA|HORAFIM|HORAINICIO|ID|IS_EPOCA_ESPECIAL|IS_PRIMEIRA_SEMANA|IS_ULTIMA_SEMANA|IS_VESPERA_FERIADO|NOMEUC|NR_UCS|RAMO|REGIME|REGIMEUC|TIPOTURNO|USER_ID|IS_AULA_CEDO_REGIME"/>
+            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|DIASEMANA|ID|IS_PRIMEIRA_SEMANA|IS_ULTIMA_SEMANA|IS_VESPERA_FERIADO|NOMEUC|NR_UCS|RAMO|REGIMEUC|USER_ID|Área Científica|REPETENTE"/>
             <parameter key="use_except_expression" value="false"/>
             <parameter key="value_type" value="attribute_value"/>
             <parameter key="use_value_type_exception" value="false"/>
@@ -2088,7 +2363,15 @@
           <connect from_op="Generate Attributes (22)" from_port="example set output" to_op="Replace Missing Values (10)" to_port="example set input"/>
           <connect from_op="Replace Missing Values (10)" from_port="example set output" to_op="Replace Missing Values (14)" to_port="example set input"/>
           <connect from_op="Replace Missing Values (14)" from_port="example set output" to_op="Generate Attributes (25)" to_port="example set input"/>
-          <connect from_op="Generate Attributes (25)" from_port="example set output" to_op="Select Attributes (21)" to_port="example set input"/>
+          <connect from_op="Generate Attributes (25)" from_port="example set output" to_op="Join (20)" to_port="left"/>
+          <connect from_op="Retrieve areas-cientificas (2)" from_port="output" to_op="Join (20)" to_port="right"/>
+          <connect from_op="Join (20)" from_port="join" to_op="Multiply (12)" to_port="input"/>
+          <connect from_op="Multiply (12)" from_port="output 1" to_op="Join (25)" to_port="left"/>
+          <connect from_op="Multiply (12)" from_port="output 2" to_op="Parse Numbers (4)" to_port="example set input"/>
+          <connect from_op="Parse Numbers (4)" from_port="example set output" to_op="Aggregate (9)" to_port="example set input"/>
+          <connect from_op="Aggregate (9)" from_port="example set output" to_op="Join (25)" to_port="right"/>
+          <connect from_op="Join (25)" from_port="join" to_op="Generate Attributes (27)" to_port="example set input"/>
+          <connect from_op="Generate Attributes (27)" from_port="example set output" to_op="Select Attributes (21)" to_port="example set input"/>
           <connect from_op="Select Attributes (21)" from_port="example set output" to_port="out 1"/>
           <portSpacing port="source_in 1" spacing="0"/>
           <portSpacing port="source_in 2" spacing="0"/>
@@ -2195,6 +2478,10 @@
       <connect from_op="Retrieve Data_Set_Competicao" from_port="output" to_op="Generate (2)" to_port="in 1"/>
       <connect from_op="Generate" from_port="out 1" to_op="Cleaning" to_port="in 1"/>
       <connect from_op="Cleaning" from_port="out 1" to_op="Multiply (2)" to_port="input"/>
+      <connect from_op="Parse Numbers (2)" from_port="example set output" to_op="Aggregate (7)" to_port="example set input"/>
+      <connect from_op="Aggregate (7)" from_port="example set output" to_op="Generate Attributes (21)" to_port="example set input"/>
+      <connect from_op="Generate Attributes (21)" from_port="example set output" to_op="Select Attributes (18)" to_port="example set input"/>
+      <connect from_op="Select Attributes (18)" from_port="example set output" to_op="Multiply (10)" to_port="input"/>
       <connect from_op="Multiply (2)" from_port="output 1" to_op="Replace Missing Values (11)" to_port="example set input"/>
       <connect from_op="Multiply (2)" from_port="output 2" to_op="Parse Numbers" to_port="example set input"/>
       <connect from_op="Parse Numbers" from_port="example set output" to_op="Aggregate (2)" to_port="example set input"/>
@@ -2202,10 +2489,6 @@
       <connect from_op="Generate Attributes (8)" from_port="example set output" to_op="Select Attributes (10)" to_port="example set input"/>
       <connect from_op="Select Attributes (10)" from_port="example set output" to_op="Join (24)" to_port="right"/>
       <connect from_op="Replace Missing Values (11)" from_port="example set output" to_op="Join (24)" to_port="left"/>
-      <connect from_op="Parse Numbers (2)" from_port="example set output" to_op="Aggregate (7)" to_port="example set input"/>
-      <connect from_op="Aggregate (7)" from_port="example set output" to_op="Generate Attributes (21)" to_port="example set input"/>
-      <connect from_op="Generate Attributes (21)" from_port="example set output" to_op="Select Attributes (18)" to_port="example set input"/>
-      <connect from_op="Select Attributes (18)" from_port="example set output" to_op="Multiply (10)" to_port="input"/>
       <connect from_op="Join (24)" from_port="join" to_op="Select Attributes (11)" to_port="example set input"/>
       <connect from_op="Select Attributes (11)" from_port="example set output" to_op="Multiply (9)" to_port="input"/>
       <connect from_op="Multiply (9)" from_port="output 1" to_op="Cross Validation" to_port="example set"/>
