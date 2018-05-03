@@ -1215,7 +1215,7 @@
           <operator activated="true" class="select_attributes" compatibility="8.1.003" expanded="true" height="82" name="Select Attributes (20)" width="90" x="5204" y="595">
             <parameter key="attribute_filter_type" value="subset"/>
             <parameter key="attribute" value=""/>
-            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|DIASEMANA|ID|IS_PRIMEIRA_SEMANA|IS_ULTIMA_SEMANA|IS_VESPERA_FERIADO|NOMEUC|NR_UCS|RAMO|REGIMEUC|USER_ID|Área Científica|REPETENTE"/>
+            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|DIASEMANA|ID|IS_PRIMEIRA_SEMANA|IS_ULTIMA_SEMANA|IS_VESPERA_FERIADO|NOMEUC|NR_UCS|RAMO|REGIMEUC|USER_ID|Área Científica"/>
             <parameter key="use_except_expression" value="false"/>
             <parameter key="value_type" value="attribute_value"/>
             <parameter key="use_value_type_exception" value="false"/>
@@ -2310,7 +2310,7 @@
           <operator activated="true" class="select_attributes" compatibility="8.1.003" expanded="true" height="82" name="Select Attributes (21)" width="90" x="5204" y="595">
             <parameter key="attribute_filter_type" value="subset"/>
             <parameter key="attribute" value=""/>
-            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|DIASEMANA|ID|IS_PRIMEIRA_SEMANA|IS_ULTIMA_SEMANA|IS_VESPERA_FERIADO|NOMEUC|NR_UCS|RAMO|REGIMEUC|USER_ID|Área Científica|REPETENTE"/>
+            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|DIASEMANA|ID|IS_PRIMEIRA_SEMANA|IS_ULTIMA_SEMANA|IS_VESPERA_FERIADO|NOMEUC|NR_UCS|RAMO|REGIMEUC|USER_ID|Área Científica"/>
             <parameter key="use_except_expression" value="false"/>
             <parameter key="value_type" value="attribute_value"/>
             <parameter key="use_value_type_exception" value="false"/>
