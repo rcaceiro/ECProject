@@ -638,7 +638,7 @@
         <parameter key="max_runtime_seconds" value="0"/>
         <list key="expert_parameters"/>
       </operator>
-      <operator activated="true" class="retrieve" compatibility="8.1.003" expanded="true" height="68" name="Retrieve Data_Set_Competicao" width="90" x="983" y="901">
+      <operator activated="true" class="retrieve" compatibility="8.1.003" expanded="true" height="68" name="Retrieve Data_Set_Competicao" width="90" x="983" y="850">
         <parameter key="repository_entry" value="../data/Data_Set_Competicao"/>
       </operator>
       <operator activated="false" class="concurrency:join" compatibility="8.1.003" expanded="true" height="82" name="Join (22)" width="90" x="1251" y="1207">
@@ -1215,7 +1215,7 @@
           <operator activated="true" class="select_attributes" compatibility="8.1.003" expanded="true" height="82" name="Select Attributes (20)" width="90" x="5405" y="595">
             <parameter key="attribute_filter_type" value="subset"/>
             <parameter key="attribute" value=""/>
-            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|DIASEMANA|ID|IS_PRIMEIRA_SEMANA|IS_ULTIMA_SEMANA|IS_VESPERA_FERIADO|NOMEUC|NR_UCS|RAMO|REGIMEUC|USER_ID|Área Científica|IS_EPOCA_ESPECIAL|REPETENTE"/>
+            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|DIASEMANA|DURACAO|ID|IS_AULA_CEDO_REGIME|IS_PRIMEIRA_SEMANA|IS_ULTIMA_SEMANA|IS_VESPERA_FERIADO|NOMEUC|NR_UCS|RAMO|REGIMEUC|REPETENTE|USER_ID|Área Científica"/>
             <parameter key="use_except_expression" value="false"/>
             <parameter key="value_type" value="attribute_value"/>
             <parameter key="use_value_type_exception" value="false"/>
@@ -1684,7 +1684,7 @@
           <operator activated="false" class="naive_bayes" compatibility="8.1.003" expanded="true" height="82" name="Naive Bayes" width="90" x="246" y="493">
             <parameter key="laplace_correction" value="true"/>
           </operator>
-          <operator activated="false" class="h2o:deep_learning" compatibility="7.6.001" expanded="true" height="82" name="Deep Learning" width="90" x="246" y="238">
+          <operator activated="true" class="h2o:deep_learning" compatibility="7.6.001" expanded="true" height="82" name="Deep Learning" width="90" x="246" y="34">
             <parameter key="activation" value="Rectifier"/>
             <enumeration key="hidden_layer_sizes">
               <parameter key="hidden_layer_sizes" value="50"/>
@@ -1804,13 +1804,13 @@
             <parameter key="X" value="false"/>
             <parameter key="A" value="weka.core.neighboursearch.LinearNNSearch -A &quot;weka.core.EuclideanDistance -R first-last&quot;"/>
           </operator>
-          <operator activated="false" class="weka:W-RandomForest" compatibility="7.3.000" expanded="true" height="82" name="W-RandomForest" width="90" x="447" y="187">
+          <operator activated="false" class="weka:W-RandomForest" compatibility="7.3.000" expanded="true" height="82" name="W-RandomForest" width="90" x="179" y="85">
             <parameter key="I" value="10.0"/>
             <parameter key="K" value="0.0"/>
             <parameter key="S" value="1.0"/>
             <parameter key="D" value="false"/>
           </operator>
-          <operator activated="true" class="weka:W-DTNB" compatibility="7.3.000" expanded="true" height="82" name="W-DTNB" width="90" x="246" y="34">
+          <operator activated="false" class="weka:W-DTNB" compatibility="7.3.000" expanded="true" height="82" name="W-DTNB" width="90" x="45" y="187">
             <parameter key="X" value="1.0"/>
             <parameter key="I" value="false"/>
             <parameter key="R" value="false"/>
@@ -1821,8 +1821,8 @@
             <parameter key="I" value="false"/>
             <parameter key="R" value="false"/>
           </operator>
-          <connect from_port="training set" to_op="W-DTNB" to_port="training set"/>
-          <connect from_op="W-DTNB" from_port="model" to_port="model"/>
+          <connect from_port="training set" to_op="Deep Learning" to_port="training set"/>
+          <connect from_op="Deep Learning" from_port="model" to_port="model"/>
           <portSpacing port="source_training set" spacing="0"/>
           <portSpacing port="sink_model" spacing="0"/>
           <portSpacing port="sink_through 1" spacing="0"/>
@@ -2418,7 +2418,7 @@
           <operator activated="true" class="select_attributes" compatibility="8.1.003" expanded="true" height="82" name="Select Attributes (21)" width="90" x="5405" y="595">
             <parameter key="attribute_filter_type" value="subset"/>
             <parameter key="attribute" value=""/>
-            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|DIASEMANA|ID|IS_PRIMEIRA_SEMANA|IS_ULTIMA_SEMANA|IS_VESPERA_FERIADO|NOMEUC|NR_UCS|RAMO|REGIMEUC|USER_ID"/>
+            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|DIASEMANA|DURACAO|ID|IS_AULA_CEDO_REGIME|IS_PRIMEIRA_SEMANA|IS_ULTIMA_SEMANA|IS_VESPERA_FERIADO|NOMEUC|NR_UCS|RAMO|REGIMEUC|REPETENTE|USER_ID|Área Científica"/>
             <parameter key="use_except_expression" value="false"/>
             <parameter key="value_type" value="attribute_value"/>
             <parameter key="use_value_type_exception" value="false"/>
@@ -2557,7 +2557,7 @@
         <parameter key="include_special_attributes" value="true"/>
       </operator>
       <operator activated="true" class="write_csv" compatibility="8.1.003" expanded="true" height="82" name="Write CSV" width="90" x="2189" y="595">
-        <parameter key="csv_file" value="/home/unknown/ricardomaltez@gmail.com/ComputerEngineering/3.ano/2-Semester/EngenhariaDeConhecimento/Projecto/previsao.csv"/>
+        <parameter key="csv_file" value="/home/gaming/ricardomaltez@gmail.com/ComputerEngineering/3.ano/2-Semester/EngenhariaDeConhecimento/Projecto/previsao.csv"/>
         <parameter key="column_separator" value=","/>
         <parameter key="write_attribute_names" value="true"/>
         <parameter key="quote_nominal_values" value="false"/>
