@@ -1933,7 +1933,7 @@
             <parameter key="A" value="false"/>
           </operator>
           <operator activated="true" class="h2o:gradient_boosted_trees" compatibility="8.2.000" expanded="true" height="103" name="Gradient Boosted Trees" width="90" x="313" y="85">
-            <parameter key="number_of_trees" value="166"/>
+            <parameter key="number_of_trees" value="80"/>
             <parameter key="reproducible" value="false"/>
             <parameter key="maximum_number_of_threads" value="4"/>
             <parameter key="use_local_random_seed" value="false"/>
@@ -1942,7 +1942,7 @@
             <parameter key="min_rows" value="10.0"/>
             <parameter key="min_split_improvement" value="0.0"/>
             <parameter key="number_of_bins" value="20"/>
-            <parameter key="learning_rate" value="0.02"/>
+            <parameter key="learning_rate" value="0.2"/>
             <parameter key="sample_rate" value="1.0"/>
             <parameter key="distribution" value="AUTO"/>
             <parameter key="early_stopping" value="false"/>
