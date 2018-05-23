@@ -1380,7 +1380,7 @@
           <operator activated="true" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes (20)" width="90" x="5941" y="595">
             <parameter key="attribute_filter_type" value="subset"/>
             <parameter key="attribute" value=""/>
-            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|ID|INICIO_SEMANA|IS_AULA_CEDO_REGIME|NOMEUC|NR_AULAS|NR_UCS|NumeroDeAulasRestantes|RAMO|REGIMEUC|REPETENTE|USER_ID|Área Científica|DURACAO"/>
+            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|DURACAO|ID|INICIO_SEMANA|IS_AULA_CEDO_REGIME|NOMEUC|NR_AULAS|NR_UCS|NumeroDeAulasRestantes|RAMO|REGIMEUC|REPETENTE|USER_ID"/>
             <parameter key="use_except_expression" value="false"/>
             <parameter key="value_type" value="attribute_value"/>
             <parameter key="use_value_type_exception" value="false"/>
@@ -2714,7 +2714,7 @@
           <operator activated="true" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes (18)" width="90" x="5941" y="595">
             <parameter key="attribute_filter_type" value="subset"/>
             <parameter key="attribute" value=""/>
-            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|ID|INICIO_SEMANA|IS_AULA_CEDO_REGIME|NOMEUC|NR_AULAS|NR_UCS|NumeroDeAulasRestantes|RAMO|REGIMEUC|REPETENTE|USER_ID|Área Científica|DURACAO"/>
+            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|DURACAO|ID|INICIO_SEMANA|IS_AULA_CEDO_REGIME|NOMEUC|NR_AULAS|NR_UCS|NumeroDeAulasRestantes|RAMO|REGIMEUC|REPETENTE|USER_ID"/>
             <parameter key="use_except_expression" value="false"/>
             <parameter key="value_type" value="attribute_value"/>
             <parameter key="use_value_type_exception" value="false"/>
