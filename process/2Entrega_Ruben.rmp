@@ -1343,27 +1343,6 @@
             </list>
             <parameter key="keep_all" value="true"/>
           </operator>
-          <operator activated="true" class="discretize_by_frequency" compatibility="8.2.000" expanded="true" height="103" name="Discretize" width="90" x="6075" y="595">
-            <parameter key="return_preprocessing_model" value="false"/>
-            <parameter key="create_view" value="false"/>
-            <parameter key="attribute_filter_type" value="single"/>
-            <parameter key="attribute" value="NumeroDeAulasRestantes"/>
-            <parameter key="attributes" value=""/>
-            <parameter key="use_except_expression" value="false"/>
-            <parameter key="value_type" value="numeric"/>
-            <parameter key="use_value_type_exception" value="false"/>
-            <parameter key="except_value_type" value="real"/>
-            <parameter key="block_type" value="value_series"/>
-            <parameter key="use_block_type_exception" value="false"/>
-            <parameter key="except_block_type" value="value_series_end"/>
-            <parameter key="invert_selection" value="false"/>
-            <parameter key="include_special_attributes" value="false"/>
-            <parameter key="use_sqrt_of_examples" value="false"/>
-            <parameter key="number_of_bins" value="5"/>
-            <parameter key="range_name_type" value="long"/>
-            <parameter key="automatic_number_of_digits" value="true"/>
-            <parameter key="number_of_digits" value="-1"/>
-          </operator>
           <operator activated="false" class="discretize_by_entropy" compatibility="8.2.000" expanded="true" height="103" name="Discretize (3)" width="90" x="6075" y="850">
             <parameter key="return_preprocessing_model" value="false"/>
             <parameter key="create_view" value="false"/>
@@ -1383,6 +1362,60 @@
             <parameter key="range_name_type" value="long"/>
             <parameter key="automatic_number_of_digits" value="true"/>
             <parameter key="number_of_digits" value="-1"/>
+          </operator>
+          <operator activated="true" class="select_subprocess" compatibility="8.2.000" expanded="true" height="82" name="Discretizar atributos" width="90" x="6075" y="595">
+            <parameter key="select_which" value="1"/>
+            <process expanded="true">
+              <operator activated="true" class="discretize_by_frequency" compatibility="8.2.000" expanded="true" height="103" name="Discretize" width="90" x="112" y="34">
+                <parameter key="return_preprocessing_model" value="false"/>
+                <parameter key="create_view" value="false"/>
+                <parameter key="attribute_filter_type" value="single"/>
+                <parameter key="attribute" value="NumeroDeAulasRestantes"/>
+                <parameter key="attributes" value=""/>
+                <parameter key="use_except_expression" value="false"/>
+                <parameter key="value_type" value="numeric"/>
+                <parameter key="use_value_type_exception" value="false"/>
+                <parameter key="except_value_type" value="real"/>
+                <parameter key="block_type" value="value_series"/>
+                <parameter key="use_block_type_exception" value="false"/>
+                <parameter key="except_block_type" value="value_series_end"/>
+                <parameter key="invert_selection" value="false"/>
+                <parameter key="include_special_attributes" value="false"/>
+                <parameter key="use_sqrt_of_examples" value="false"/>
+                <parameter key="number_of_bins" value="5"/>
+                <parameter key="range_name_type" value="long"/>
+                <parameter key="automatic_number_of_digits" value="true"/>
+                <parameter key="number_of_digits" value="-1"/>
+              </operator>
+              <operator activated="true" class="discretize_by_frequency" compatibility="8.2.000" expanded="true" height="103" name="Discretize (5)" width="90" x="313" y="34">
+                <parameter key="return_preprocessing_model" value="false"/>
+                <parameter key="create_view" value="false"/>
+                <parameter key="attribute_filter_type" value="single"/>
+                <parameter key="attribute" value="NR_AULAS"/>
+                <parameter key="attributes" value=""/>
+                <parameter key="use_except_expression" value="false"/>
+                <parameter key="value_type" value="numeric"/>
+                <parameter key="use_value_type_exception" value="false"/>
+                <parameter key="except_value_type" value="real"/>
+                <parameter key="block_type" value="value_series"/>
+                <parameter key="use_block_type_exception" value="false"/>
+                <parameter key="except_block_type" value="value_series_end"/>
+                <parameter key="invert_selection" value="false"/>
+                <parameter key="include_special_attributes" value="false"/>
+                <parameter key="use_sqrt_of_examples" value="false"/>
+                <parameter key="number_of_bins" value="2"/>
+                <parameter key="range_name_type" value="long"/>
+                <parameter key="automatic_number_of_digits" value="true"/>
+                <parameter key="number_of_digits" value="-1"/>
+              </operator>
+              <connect from_port="input 1" to_op="Discretize" to_port="example set input"/>
+              <connect from_op="Discretize" from_port="example set output" to_op="Discretize (5)" to_port="example set input"/>
+              <connect from_op="Discretize (5)" from_port="example set output" to_port="output 1"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+            </process>
           </operator>
           <operator activated="true" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes (20)" width="90" x="6209" y="595">
             <parameter key="attribute_filter_type" value="subset"/>
@@ -1463,8 +1496,8 @@
           <connect from_op="Set Role (4)" from_port="example set output" to_op="Store (4)" to_port="input"/>
           <connect from_op="Retrieve" from_port="output" to_op="Join (28)" to_port="right"/>
           <connect from_op="Join (28)" from_port="join" to_op="Generate Attributes (33)" to_port="example set input"/>
-          <connect from_op="Generate Attributes (33)" from_port="example set output" to_op="Discretize" to_port="example set input"/>
-          <connect from_op="Discretize" from_port="example set output" to_op="Select Attributes (20)" to_port="example set input"/>
+          <connect from_op="Generate Attributes (33)" from_port="example set output" to_op="Discretizar atributos" to_port="input 1"/>
+          <connect from_op="Discretizar atributos" from_port="output 1" to_op="Select Attributes (20)" to_port="example set input"/>
           <connect from_op="Select Attributes (20)" from_port="example set output" to_port="out 1"/>
           <portSpacing port="source_in 1" spacing="0"/>
           <portSpacing port="source_in 2" spacing="0"/>
@@ -2686,28 +2719,7 @@
             </list>
             <parameter key="keep_all" value="true"/>
           </operator>
-          <operator activated="true" class="discretize_by_frequency" compatibility="8.2.000" expanded="true" height="103" name="Discretize (2)" width="90" x="6075" y="595">
-            <parameter key="return_preprocessing_model" value="false"/>
-            <parameter key="create_view" value="false"/>
-            <parameter key="attribute_filter_type" value="single"/>
-            <parameter key="attribute" value="NumeroDeAulasRestantes"/>
-            <parameter key="attributes" value=""/>
-            <parameter key="use_except_expression" value="false"/>
-            <parameter key="value_type" value="numeric"/>
-            <parameter key="use_value_type_exception" value="false"/>
-            <parameter key="except_value_type" value="real"/>
-            <parameter key="block_type" value="value_series"/>
-            <parameter key="use_block_type_exception" value="false"/>
-            <parameter key="except_block_type" value="value_series_end"/>
-            <parameter key="invert_selection" value="false"/>
-            <parameter key="include_special_attributes" value="false"/>
-            <parameter key="use_sqrt_of_examples" value="false"/>
-            <parameter key="number_of_bins" value="5"/>
-            <parameter key="range_name_type" value="long"/>
-            <parameter key="automatic_number_of_digits" value="true"/>
-            <parameter key="number_of_digits" value="-1"/>
-          </operator>
-          <operator activated="false" class="discretize_by_entropy" compatibility="8.2.000" expanded="true" height="103" name="Discretize (4)" width="90" x="6075" y="850">
+          <operator activated="false" class="discretize_by_entropy" compatibility="8.2.000" expanded="true" height="103" name="Discretize (2)" width="90" x="6075" y="850">
             <parameter key="return_preprocessing_model" value="false"/>
             <parameter key="create_view" value="false"/>
             <parameter key="attribute_filter_type" value="single"/>
@@ -2726,6 +2738,66 @@
             <parameter key="range_name_type" value="long"/>
             <parameter key="automatic_number_of_digits" value="true"/>
             <parameter key="number_of_digits" value="-1"/>
+          </operator>
+          <operator activated="true" class="select_subprocess" compatibility="8.2.000" expanded="true" height="82" name="Discretizar atributos (2)" width="90" x="6075" y="595">
+            <parameter key="select_which" value="1"/>
+            <process expanded="true">
+              <operator activated="true" class="discretize_by_frequency" compatibility="8.2.000" expanded="true" height="103" name="Discretize (4)" width="90" x="112" y="34">
+                <parameter key="return_preprocessing_model" value="false"/>
+                <parameter key="create_view" value="false"/>
+                <parameter key="attribute_filter_type" value="single"/>
+                <parameter key="attribute" value="NumeroDeAulasRestantes"/>
+                <parameter key="attributes" value=""/>
+                <parameter key="use_except_expression" value="false"/>
+                <parameter key="value_type" value="numeric"/>
+                <parameter key="use_value_type_exception" value="false"/>
+                <parameter key="except_value_type" value="real"/>
+                <parameter key="block_type" value="value_series"/>
+                <parameter key="use_block_type_exception" value="false"/>
+                <parameter key="except_block_type" value="value_series_end"/>
+                <parameter key="invert_selection" value="false"/>
+                <parameter key="include_special_attributes" value="false"/>
+                <parameter key="use_sqrt_of_examples" value="false"/>
+                <parameter key="number_of_bins" value="5"/>
+                <parameter key="range_name_type" value="long"/>
+                <parameter key="automatic_number_of_digits" value="true"/>
+                <parameter key="number_of_digits" value="-1"/>
+              </operator>
+              <operator activated="true" class="discretize_by_frequency" compatibility="8.2.000" expanded="true" height="103" name="Discretize (6)" width="90" x="313" y="34">
+                <parameter key="return_preprocessing_model" value="false"/>
+                <parameter key="create_view" value="false"/>
+                <parameter key="attribute_filter_type" value="single"/>
+                <parameter key="attribute" value="NR_AULAS"/>
+                <parameter key="attributes" value=""/>
+                <parameter key="use_except_expression" value="false"/>
+                <parameter key="value_type" value="numeric"/>
+                <parameter key="use_value_type_exception" value="false"/>
+                <parameter key="except_value_type" value="real"/>
+                <parameter key="block_type" value="value_series"/>
+                <parameter key="use_block_type_exception" value="false"/>
+                <parameter key="except_block_type" value="value_series_end"/>
+                <parameter key="invert_selection" value="false"/>
+                <parameter key="include_special_attributes" value="false"/>
+                <parameter key="use_sqrt_of_examples" value="false"/>
+                <parameter key="number_of_bins" value="2"/>
+                <parameter key="range_name_type" value="long"/>
+                <parameter key="automatic_number_of_digits" value="true"/>
+                <parameter key="number_of_digits" value="-1"/>
+              </operator>
+              <connect from_port="input 1" to_op="Discretize (4)" to_port="example set input"/>
+              <connect from_op="Discretize (4)" from_port="example set output" to_op="Discretize (6)" to_port="example set input"/>
+              <connect from_op="Discretize (6)" from_port="example set output" to_port="output 1"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+            </process>
           </operator>
           <operator activated="true" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes (18)" width="90" x="6209" y="595">
             <parameter key="attribute_filter_type" value="subset"/>
@@ -2806,8 +2878,8 @@
           <connect from_op="Set Role (3)" from_port="example set output" to_op="Store (5)" to_port="input"/>
           <connect from_op="Retrieve (2)" from_port="output" to_op="Join (29)" to_port="right"/>
           <connect from_op="Join (29)" from_port="join" to_op="Generate Attributes (34)" to_port="example set input"/>
-          <connect from_op="Generate Attributes (34)" from_port="example set output" to_op="Discretize (2)" to_port="example set input"/>
-          <connect from_op="Discretize (2)" from_port="example set output" to_op="Select Attributes (18)" to_port="example set input"/>
+          <connect from_op="Generate Attributes (34)" from_port="example set output" to_op="Discretizar atributos (2)" to_port="input 1"/>
+          <connect from_op="Discretizar atributos (2)" from_port="output 1" to_op="Select Attributes (18)" to_port="example set input"/>
           <connect from_op="Select Attributes (18)" from_port="example set output" to_port="out 1"/>
           <portSpacing port="source_in 1" spacing="0"/>
           <portSpacing port="source_in 2" spacing="0"/>
