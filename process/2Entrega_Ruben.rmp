@@ -1359,7 +1359,7 @@
             <parameter key="invert_selection" value="false"/>
             <parameter key="include_special_attributes" value="false"/>
             <parameter key="use_sqrt_of_examples" value="false"/>
-            <parameter key="number_of_bins" value="4"/>
+            <parameter key="number_of_bins" value="5"/>
             <parameter key="range_name_type" value="long"/>
             <parameter key="automatic_number_of_digits" value="true"/>
             <parameter key="number_of_digits" value="-1"/>
@@ -1974,7 +1974,7 @@
           </operator>
           <operator activated="true" class="performance_binominal_classification" compatibility="8.2.000" expanded="true" height="82" name="Performance (3)" width="90" x="313" y="34">
             <parameter key="main_criterion" value="AUC"/>
-            <parameter key="accuracy" value="false"/>
+            <parameter key="accuracy" value="true"/>
             <parameter key="classification_error" value="false"/>
             <parameter key="kappa" value="false"/>
             <parameter key="AUC (optimistic)" value="false"/>
@@ -2702,7 +2702,7 @@
             <parameter key="invert_selection" value="false"/>
             <parameter key="include_special_attributes" value="false"/>
             <parameter key="use_sqrt_of_examples" value="false"/>
-            <parameter key="number_of_bins" value="4"/>
+            <parameter key="number_of_bins" value="5"/>
             <parameter key="range_name_type" value="long"/>
             <parameter key="automatic_number_of_digits" value="true"/>
             <parameter key="number_of_digits" value="-1"/>
