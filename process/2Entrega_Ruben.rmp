@@ -1343,6 +1343,27 @@
             </list>
             <parameter key="keep_all" value="true"/>
           </operator>
+          <operator activated="true" class="discretize_by_frequency" compatibility="8.2.000" expanded="true" height="103" name="Discretize" width="90" x="6075" y="595">
+            <parameter key="return_preprocessing_model" value="false"/>
+            <parameter key="create_view" value="false"/>
+            <parameter key="attribute_filter_type" value="single"/>
+            <parameter key="attribute" value="NumeroDeAulasRestantes"/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="numeric"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="real"/>
+            <parameter key="block_type" value="value_series"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_series_end"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="use_sqrt_of_examples" value="false"/>
+            <parameter key="number_of_bins" value="4"/>
+            <parameter key="range_name_type" value="long"/>
+            <parameter key="automatic_number_of_digits" value="true"/>
+            <parameter key="number_of_digits" value="-1"/>
+          </operator>
           <operator activated="false" class="discretize_by_entropy" compatibility="8.2.000" expanded="true" height="103" name="Discretize (3)" width="90" x="6075" y="850">
             <parameter key="return_preprocessing_model" value="false"/>
             <parameter key="create_view" value="false"/>
@@ -1442,13 +1463,13 @@
           <connect from_op="Set Role (4)" from_port="example set output" to_op="Store (4)" to_port="input"/>
           <connect from_op="Retrieve" from_port="output" to_op="Join (28)" to_port="right"/>
           <connect from_op="Join (28)" from_port="join" to_op="Generate Attributes (33)" to_port="example set input"/>
-          <connect from_op="Generate Attributes (33)" from_port="example set output" to_op="Select Attributes (20)" to_port="example set input"/>
+          <connect from_op="Generate Attributes (33)" from_port="example set output" to_op="Discretize" to_port="example set input"/>
+          <connect from_op="Discretize" from_port="example set output" to_op="Select Attributes (20)" to_port="example set input"/>
           <connect from_op="Select Attributes (20)" from_port="example set output" to_port="out 1"/>
           <portSpacing port="source_in 1" spacing="0"/>
           <portSpacing port="source_in 2" spacing="0"/>
           <portSpacing port="sink_out 1" spacing="567"/>
           <portSpacing port="sink_out 2" spacing="21"/>
-          <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="207" y="568">Type your comment</description>
         </process>
       </operator>
       <operator activated="true" class="subprocess" compatibility="8.2.000" expanded="true" height="82" name="Cleaning" width="90" x="313" y="493">
@@ -1793,7 +1814,7 @@
           <operator activated="false" class="naive_bayes" compatibility="8.2.000" expanded="true" height="82" name="Naive Bayes" width="90" x="246" y="493">
             <parameter key="laplace_correction" value="true"/>
           </operator>
-          <operator activated="false" class="h2o:deep_learning" compatibility="8.2.000" expanded="true" height="82" name="Deep Learning" width="90" x="313" y="136">
+          <operator activated="false" class="h2o:deep_learning" compatibility="8.2.000" expanded="true" height="82" name="Deep Learning" width="90" x="313" y="187">
             <parameter key="activation" value="Rectifier"/>
             <enumeration key="hidden_layer_sizes">
               <parameter key="hidden_layer_sizes" value="50"/>
@@ -1910,9 +1931,9 @@
             <parameter key="U" value="false"/>
             <parameter key="D" value="false"/>
           </operator>
-          <operator activated="false" class="weka:W-J48" compatibility="7.3.000" expanded="true" height="82" name="W-J48 (2)" width="90" x="45" y="187">
+          <operator activated="true" class="weka:W-J48" compatibility="7.3.000" expanded="true" height="82" name="W-J48 (2)" width="90" x="313" y="34">
             <parameter key="U" value="false"/>
-            <parameter key="C" value="0.5"/>
+            <parameter key="C" value="0.25"/>
             <parameter key="M" value="2.0"/>
             <parameter key="R" value="false"/>
             <parameter key="B" value="false"/>
@@ -1920,7 +1941,7 @@
             <parameter key="L" value="false"/>
             <parameter key="A" value="false"/>
           </operator>
-          <operator activated="true" class="h2o:gradient_boosted_trees" compatibility="8.2.000" expanded="true" height="103" name="Gradient Boosted Trees" width="90" x="246" y="34">
+          <operator activated="false" class="h2o:gradient_boosted_trees" compatibility="8.2.000" expanded="true" height="103" name="Gradient Boosted Trees" width="90" x="179" y="85">
             <parameter key="number_of_trees" value="80"/>
             <parameter key="reproducible" value="false"/>
             <parameter key="maximum_number_of_threads" value="4"/>
@@ -1940,8 +1961,8 @@
             <parameter key="max_runtime_seconds" value="0"/>
             <list key="expert_parameters"/>
           </operator>
-          <connect from_port="training set" to_op="Gradient Boosted Trees" to_port="training set"/>
-          <connect from_op="Gradient Boosted Trees" from_port="model" to_port="model"/>
+          <connect from_port="training set" to_op="W-J48 (2)" to_port="training set"/>
+          <connect from_op="W-J48 (2)" from_port="model" to_port="model"/>
           <portSpacing port="source_training set" spacing="0"/>
           <portSpacing port="sink_model" spacing="0"/>
           <portSpacing port="sink_through 1" spacing="0"/>
@@ -2665,7 +2686,28 @@
             </list>
             <parameter key="keep_all" value="true"/>
           </operator>
-          <operator activated="false" class="discretize_by_entropy" compatibility="8.2.000" expanded="true" height="103" name="Discretize (2)" width="90" x="6075" y="850">
+          <operator activated="true" class="discretize_by_frequency" compatibility="8.2.000" expanded="true" height="103" name="Discretize (2)" width="90" x="6075" y="595">
+            <parameter key="return_preprocessing_model" value="false"/>
+            <parameter key="create_view" value="false"/>
+            <parameter key="attribute_filter_type" value="single"/>
+            <parameter key="attribute" value="NumeroDeAulasRestantes"/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="numeric"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="real"/>
+            <parameter key="block_type" value="value_series"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_series_end"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="use_sqrt_of_examples" value="false"/>
+            <parameter key="number_of_bins" value="4"/>
+            <parameter key="range_name_type" value="long"/>
+            <parameter key="automatic_number_of_digits" value="true"/>
+            <parameter key="number_of_digits" value="-1"/>
+          </operator>
+          <operator activated="false" class="discretize_by_entropy" compatibility="8.2.000" expanded="true" height="103" name="Discretize (4)" width="90" x="6075" y="850">
             <parameter key="return_preprocessing_model" value="false"/>
             <parameter key="create_view" value="false"/>
             <parameter key="attribute_filter_type" value="single"/>
@@ -2764,13 +2806,13 @@
           <connect from_op="Set Role (3)" from_port="example set output" to_op="Store (5)" to_port="input"/>
           <connect from_op="Retrieve (2)" from_port="output" to_op="Join (29)" to_port="right"/>
           <connect from_op="Join (29)" from_port="join" to_op="Generate Attributes (34)" to_port="example set input"/>
-          <connect from_op="Generate Attributes (34)" from_port="example set output" to_op="Select Attributes (18)" to_port="example set input"/>
+          <connect from_op="Generate Attributes (34)" from_port="example set output" to_op="Discretize (2)" to_port="example set input"/>
+          <connect from_op="Discretize (2)" from_port="example set output" to_op="Select Attributes (18)" to_port="example set input"/>
           <connect from_op="Select Attributes (18)" from_port="example set output" to_port="out 1"/>
           <portSpacing port="source_in 1" spacing="0"/>
           <portSpacing port="source_in 2" spacing="0"/>
           <portSpacing port="sink_out 1" spacing="0"/>
           <portSpacing port="sink_out 2" spacing="0"/>
-          <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="207" y="568">Type your comment</description>
         </process>
       </operator>
       <operator activated="true" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes (12)" width="90" x="1519" y="850">
