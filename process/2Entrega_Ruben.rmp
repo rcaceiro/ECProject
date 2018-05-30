@@ -1340,6 +1340,7 @@
             <list key="function_descriptions">
               <parameter key="PERIODO" value="if (parse(cut(HORAINICIO, 0, 2)) &lt; 14, &quot;Manha&quot;, if (parse(cut(HORAINICIO, 0, 2)) &lt; 20, &quot;Tarde&quot;, &quot;Noite&quot;))"/>
               <parameter key="2_SEMANA" value="if(SEMANA == 1, true, false)"/>
+              <parameter key="IS_ANALISE" value="if (NOMEUC == &quot;Análise Matemática&quot;, 1, 0)"/>
             </list>
             <parameter key="keep_all" value="true"/>
           </operator>
@@ -1426,7 +1427,7 @@
           <operator activated="true" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes (20)" width="90" x="6209" y="595">
             <parameter key="attribute_filter_type" value="subset"/>
             <parameter key="attribute" value=""/>
-            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|DURACAO|ID|INICIO_SEMANA|NOMEUC|NR_AULAS|NR_UCS|NumeroDeAulasRestantes|RAMO|REGIMEUC|REPETENTE|USER_ID|IS_AULA_CEDO_REGIME"/>
+            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|ID|INICIO_SEMANA|NOMEUC|NR_AULAS|NR_UCS|NumeroDeAulasRestantes|RAMO|REGIMEUC|REPETENTE|USER_ID|IS_AULA_CEDO_REGIME"/>
             <parameter key="use_except_expression" value="false"/>
             <parameter key="value_type" value="attribute_value"/>
             <parameter key="use_value_type_exception" value="false"/>
@@ -1909,7 +1910,7 @@
             <parameter key="L" value="false"/>
             <parameter key="A" value="false"/>
           </operator>
-          <operator activated="false" class="h2o:gradient_boosted_trees" compatibility="8.2.000" expanded="true" height="103" name="Gradient Boosted Trees" width="90" x="246" y="85">
+          <operator activated="false" class="h2o:gradient_boosted_trees" compatibility="8.2.000" expanded="true" height="103" name="Gradient Boosted Trees" width="90" x="179" y="85">
             <parameter key="number_of_trees" value="80"/>
             <parameter key="reproducible" value="false"/>
             <parameter key="maximum_number_of_threads" value="4"/>
@@ -2736,6 +2737,7 @@
             <list key="function_descriptions">
               <parameter key="PERIODO" value="if (parse(cut(HORAINICIO, 0, 2)) &lt; 14, &quot;Manha&quot;, if (parse(cut(HORAINICIO, 0, 2)) &lt; 20, &quot;Tarde&quot;, &quot;Noite&quot;))"/>
               <parameter key="2_SEMANA" value="if(SEMANA == 1, true, false)"/>
+              <parameter key="IS_ANALISE" value="if (NOMEUC == &quot;Análise Matemática&quot;, 1, 0)"/>
             </list>
             <parameter key="keep_all" value="true"/>
           </operator>
@@ -2822,7 +2824,7 @@
           <operator activated="true" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes (18)" width="90" x="6209" y="595">
             <parameter key="attribute_filter_type" value="subset"/>
             <parameter key="attribute" value=""/>
-            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|DURACAO|ID|INICIO_SEMANA|NOMEUC|NR_AULAS|NR_UCS|NumeroDeAulasRestantes|RAMO|REGIMEUC|REPETENTE|USER_ID|IS_AULA_CEDO_REGIME"/>
+            <parameter key="attributes" value="PRESENTE|ANOUC|AULA_DATE|ID|INICIO_SEMANA|NOMEUC|NR_AULAS|NR_UCS|NumeroDeAulasRestantes|RAMO|REGIMEUC|REPETENTE|USER_ID|IS_AULA_CEDO_REGIME"/>
             <parameter key="use_except_expression" value="false"/>
             <parameter key="value_type" value="attribute_value"/>
             <parameter key="use_value_type_exception" value="false"/>
