@@ -1953,7 +1953,7 @@
           </operator>
           <operator activated="true" class="performance_binominal_classification" compatibility="8.2.000" expanded="true" height="82" name="Performance (3)" width="90" x="313" y="34">
             <parameter key="main_criterion" value="AUC"/>
-            <parameter key="accuracy" value="false"/>
+            <parameter key="accuracy" value="true"/>
             <parameter key="classification_error" value="false"/>
             <parameter key="kappa" value="false"/>
             <parameter key="AUC (optimistic)" value="false"/>
