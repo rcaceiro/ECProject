@@ -1944,16 +1944,6 @@
             <parameter key="U" value="false"/>
             <parameter key="D" value="false"/>
           </operator>
-          <operator activated="true" class="weka:W-J48" compatibility="7.3.000" expanded="true" height="82" name="W-J48 (2)" width="90" x="313" y="34">
-            <parameter key="U" value="false"/>
-            <parameter key="C" value="0.25"/>
-            <parameter key="M" value="2.0"/>
-            <parameter key="R" value="false"/>
-            <parameter key="B" value="false"/>
-            <parameter key="S" value="false"/>
-            <parameter key="L" value="false"/>
-            <parameter key="A" value="false"/>
-          </operator>
           <operator activated="false" class="h2o:gradient_boosted_trees" compatibility="8.2.000" expanded="true" height="103" name="Gradient Boosted Trees" width="90" x="313" y="187">
             <parameter key="number_of_trees" value="80"/>
             <parameter key="reproducible" value="false"/>
@@ -1974,8 +1964,64 @@
             <parameter key="max_runtime_seconds" value="0"/>
             <list key="expert_parameters"/>
           </operator>
-          <connect from_port="training set" to_op="W-J48 (2)" to_port="training set"/>
-          <connect from_op="W-J48 (2)" from_port="model" to_port="model"/>
+          <operator activated="false" class="concurrency:parallel_decision_tree" compatibility="8.2.000" expanded="true" height="103" name="Decision Tree" width="90" x="447" y="34">
+            <parameter key="criterion" value="gain_ratio"/>
+            <parameter key="maximal_depth" value="9"/>
+            <parameter key="apply_pruning" value="true"/>
+            <parameter key="confidence" value="0.5"/>
+            <parameter key="apply_prepruning" value="false"/>
+            <parameter key="minimal_gain" value="0.9"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+          </operator>
+          <operator activated="false" class="weka:W-J48" compatibility="7.3.000" expanded="true" height="82" name="W-J48 (2)" width="90" x="313" y="34">
+            <parameter key="U" value="false"/>
+            <parameter key="C" value="0.25"/>
+            <parameter key="M" value="2.0"/>
+            <parameter key="R" value="false"/>
+            <parameter key="B" value="false"/>
+            <parameter key="S" value="false"/>
+            <parameter key="L" value="false"/>
+            <parameter key="A" value="false"/>
+          </operator>
+          <operator activated="true" class="metacost" compatibility="8.2.000" expanded="true" height="82" name="MetaCost" width="90" x="179" y="34">
+            <parameter key="cost_matrix" value="[0.0 50.0;100.0 -100.0]"/>
+            <parameter key="use_subset_for_training" value="1.0"/>
+            <parameter key="iterations" value="10"/>
+            <parameter key="sampling_with_replacement" value="true"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <process expanded="true">
+              <operator activated="false" class="weka:W-J48" compatibility="7.3.000" expanded="true" height="82" name="W-J48 (3)" width="90" x="179" y="34">
+                <parameter key="U" value="false"/>
+                <parameter key="C" value="0.25"/>
+                <parameter key="M" value="2.0"/>
+                <parameter key="R" value="false"/>
+                <parameter key="B" value="false"/>
+                <parameter key="S" value="false"/>
+                <parameter key="L" value="false"/>
+                <parameter key="A" value="false"/>
+              </operator>
+              <operator activated="true" class="concurrency:parallel_decision_tree" compatibility="8.2.000" expanded="true" height="103" name="Decision Tree (2)" width="90" x="447" y="34">
+                <parameter key="criterion" value="gain_ratio"/>
+                <parameter key="maximal_depth" value="9"/>
+                <parameter key="apply_pruning" value="false"/>
+                <parameter key="confidence" value="0.5"/>
+                <parameter key="apply_prepruning" value="false"/>
+                <parameter key="minimal_gain" value="0.9"/>
+                <parameter key="minimal_leaf_size" value="2"/>
+                <parameter key="minimal_size_for_split" value="4"/>
+                <parameter key="number_of_prepruning_alternatives" value="3"/>
+              </operator>
+              <connect from_port="training set" to_op="Decision Tree (2)" to_port="training set"/>
+              <connect from_op="Decision Tree (2)" from_port="model" to_port="model"/>
+              <portSpacing port="source_training set" spacing="0"/>
+              <portSpacing port="sink_model" spacing="0"/>
+            </process>
+          </operator>
+          <connect from_port="training set" to_op="MetaCost" to_port="training set"/>
+          <connect from_op="MetaCost" from_port="model" to_port="model"/>
           <portSpacing port="source_training set" spacing="0"/>
           <portSpacing port="sink_model" spacing="0"/>
           <portSpacing port="sink_through 1" spacing="0"/>
@@ -3067,7 +3113,7 @@
         <parameter key="include_special_attributes" value="true"/>
       </operator>
       <operator activated="true" class="write_csv" compatibility="8.2.000" expanded="true" height="82" name="Write CSV" width="90" x="2792" y="748">
-        <parameter key="csv_file" value="/home/gaming/ricardomaltez@gmail.com/ComputerEngineering/3.ano/2-Semester/EngenhariaDeConhecimento/Projecto/previsao.csv"/>
+        <parameter key="csv_file" value="/Users/rcaceiro/Downloads/previsao.csv"/>
         <parameter key="column_separator" value=","/>
         <parameter key="write_attribute_names" value="true"/>
         <parameter key="quote_nominal_values" value="false"/>
