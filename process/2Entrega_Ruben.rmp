@@ -700,7 +700,7 @@
               <portSpacing port="sink_out 2" spacing="0"/>
             </process>
           </operator>
-          <operator activated="true" class="subprocess" compatibility="8.2.000" expanded="true" height="82" name="Limpar vázios ou a 0" width="90" x="179" y="34">
+          <operator activated="true" class="subprocess" compatibility="8.2.000" expanded="true" height="82" name="Limpar vazios ou a 0" width="90" x="179" y="34">
             <process expanded="true">
               <operator activated="true" class="replace" compatibility="8.2.000" expanded="true" height="82" name="Replace Empty Space (3)" width="90" x="45" y="34">
                 <parameter key="attribute_filter_type" value="subset"/>
@@ -875,10 +875,16 @@
                 <parameter key="consider_regular_expressions" value="false"/>
                 <parameter key="add_default_mapping" value="false"/>
               </operator>
+              <operator activated="true" class="rename" compatibility="8.2.000" expanded="true" height="82" name="Rename (11)" width="90" x="447" y="34">
+                <parameter key="old_name" value="REGIMEUC"/>
+                <parameter key="new_name" value="REGIME_TURNO"/>
+                <list key="rename_additional_attributes"/>
+              </operator>
               <connect from_port="in 1" to_op="Replace Missing Values (4)" to_port="example set input"/>
               <connect from_op="Replace Missing Values (4)" from_port="example set output" to_op="Map (4)" to_port="example set input"/>
               <connect from_op="Map (4)" from_port="example set output" to_op="Map (9)" to_port="example set input"/>
-              <connect from_op="Map (9)" from_port="example set output" to_port="out 1"/>
+              <connect from_op="Map (9)" from_port="example set output" to_op="Rename (11)" to_port="example set input"/>
+              <connect from_op="Rename (11)" from_port="example set output" to_port="out 1"/>
               <portSpacing port="source_in 1" spacing="0"/>
               <portSpacing port="source_in 2" spacing="0"/>
               <portSpacing port="sink_out 1" spacing="0"/>
@@ -1610,7 +1616,7 @@
           <operator activated="true" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes (20)" width="90" x="2591" y="34">
             <parameter key="attribute_filter_type" value="subset"/>
             <parameter key="attribute" value=""/>
-            <parameter key="attributes" value="PRESENTE|ANOUC|AREA_CIENTIFICA|AULA_DATE|DURACAO|ID|INICIO_SEMANA|NR_AULAS_RESTANTES|NR_UCS|RAMO|REGIME|REGIMEUC|REPETENTE|USER_ID|Unidade Curricular"/>
+            <parameter key="attributes" value="PRESENTE|ANOUC|AREA_CIENTIFICA|AULA_DATE|DURACAO|ID|INICIO_SEMANA|NR_AULAS_RESTANTES|NR_UCS|RAMO|REGIME_TURNO|REPETENTE|USER_ID|Unidade Curricular"/>
             <parameter key="use_except_expression" value="false"/>
             <parameter key="value_type" value="attribute_value"/>
             <parameter key="use_value_type_exception" value="false"/>
@@ -1622,8 +1628,8 @@
             <parameter key="include_special_attributes" value="false"/>
           </operator>
           <connect from_port="in 1" to_op="AULA_DATE" to_port="in 1"/>
-          <connect from_op="AULA_DATE" from_port="out 1" to_op="Limpar vázios ou a 0" to_port="in 1"/>
-          <connect from_op="Limpar vázios ou a 0" from_port="out 1" to_op="Corrijir Ramos" to_port="in 1"/>
+          <connect from_op="AULA_DATE" from_port="out 1" to_op="Limpar vazios ou a 0" to_port="in 1"/>
+          <connect from_op="Limpar vazios ou a 0" from_port="out 1" to_op="Corrijir Ramos" to_port="in 1"/>
           <connect from_op="Corrijir Ramos" from_port="out 1" to_op="Corrijir REGIME" to_port="in 1"/>
           <connect from_op="Corrijir REGIME" from_port="out 1" to_op="Corrijir TIPOTURNO" to_port="example set input"/>
           <connect from_op="Corrijir TIPOTURNO" from_port="example set output" to_op="NR_UCS" to_port="in 1"/>
@@ -2512,10 +2518,16 @@
                 <parameter key="consider_regular_expressions" value="false"/>
                 <parameter key="add_default_mapping" value="false"/>
               </operator>
+              <operator activated="true" class="rename" compatibility="8.2.000" expanded="true" height="82" name="Rename (4)" width="90" x="447" y="34">
+                <parameter key="old_name" value="REGIMEUC"/>
+                <parameter key="new_name" value="REGIME_TURNO"/>
+                <list key="rename_additional_attributes"/>
+              </operator>
               <connect from_port="in 1" to_op="Replace Missing Values (7)" to_port="example set input"/>
               <connect from_op="Replace Missing Values (7)" from_port="example set output" to_op="Map (12)" to_port="example set input"/>
               <connect from_op="Map (12)" from_port="example set output" to_op="Map (13)" to_port="example set input"/>
-              <connect from_op="Map (13)" from_port="example set output" to_port="out 1"/>
+              <connect from_op="Map (13)" from_port="example set output" to_op="Rename (4)" to_port="example set input"/>
+              <connect from_op="Rename (4)" from_port="example set output" to_port="out 1"/>
               <portSpacing port="source_in 1" spacing="0"/>
               <portSpacing port="source_in 2" spacing="0"/>
               <portSpacing port="sink_out 1" spacing="0"/>
@@ -2569,7 +2581,7 @@
                 <parameter key="only_distinct" value="true"/>
                 <parameter key="ignore_missings" value="true"/>
               </operator>
-              <operator activated="true" class="rename" compatibility="8.2.000" expanded="true" height="82" name="Rename (4)" width="90" x="313" y="136">
+              <operator activated="true" class="rename" compatibility="8.2.000" expanded="true" height="82" name="Rename (8)" width="90" x="313" y="136">
                 <parameter key="old_name" value="count(NOMEUC)"/>
                 <parameter key="new_name" value="NR_UCS"/>
                 <list key="rename_additional_attributes"/>
@@ -2586,8 +2598,8 @@
               <connect from_port="in 1" to_op="Multiply (3)" to_port="input"/>
               <connect from_op="Multiply (3)" from_port="output 1" to_op="Join (11)" to_port="left"/>
               <connect from_op="Multiply (3)" from_port="output 2" to_op="Aggregate (5)" to_port="example set input"/>
-              <connect from_op="Aggregate (5)" from_port="example set output" to_op="Rename (4)" to_port="example set input"/>
-              <connect from_op="Rename (4)" from_port="example set output" to_op="Join (11)" to_port="right"/>
+              <connect from_op="Aggregate (5)" from_port="example set output" to_op="Rename (8)" to_port="example set input"/>
+              <connect from_op="Rename (8)" from_port="example set output" to_op="Join (11)" to_port="right"/>
               <connect from_op="Join (11)" from_port="join" to_port="out 1"/>
               <portSpacing port="source_in 1" spacing="0"/>
               <portSpacing port="source_in 2" spacing="0"/>
@@ -2869,7 +2881,7 @@
           </operator>
           <operator activated="true" class="generate_attributes" compatibility="8.2.000" expanded="true" height="82" name="IS_AULA_CEDO (2)" width="90" x="1385" y="34">
             <list key="function_descriptions">
-              <parameter key="IS_AULA_CEDO" value="if(parse(cut(HORAINICIO, 0, 2)) &lt; 10, true, false)"/>
+              <parameter key="IS_AULA_CEDO" value="if(parse(cut(HORAINICIO, 0, 2)) == 9, true, false)"/>
               <parameter key="IS_AULA_CEDO_REGIME" value="if((parse(cut(HORAINICIO, 0, 2)) &lt; 10 &amp;&amp; REGIME == &quot;Diurno&quot;) || (parse(cut(HORAINICIO, 0, 2)) &lt; 19 &amp;&amp; REGIME == &quot;Noturno&quot;), true, false)"/>
               <parameter key="IS_AULA_TARDE_REGIME" value="if((parse(cut(HORAFIM, 0, 2)) &gt; 18 &amp;&amp; REGIME == &quot;Diurno&quot;) || (parse(cut(HORAFIM, 0, 2)) &gt; 22 &amp;&amp; REGIME == &quot;Noturno&quot;), true, false)"/>
             </list>
@@ -2880,7 +2892,7 @@
               <operator activated="true" class="retrieve" compatibility="8.2.000" expanded="true" height="68" name="Retrieve areas-cientificas (2)" width="90" x="45" y="238">
                 <parameter key="repository_entry" value="../data/areas-cientificas"/>
               </operator>
-              <operator activated="true" class="rename" compatibility="8.2.000" expanded="true" height="82" name="Rename (8)" width="90" x="179" y="136">
+              <operator activated="true" class="rename" compatibility="8.2.000" expanded="true" height="82" name="Rename (10)" width="90" x="179" y="136">
                 <parameter key="old_name" value="Área Científica"/>
                 <parameter key="new_name" value="AREA_CIENTIFICA"/>
                 <list key="rename_additional_attributes"/>
@@ -2895,8 +2907,8 @@
                 <parameter key="keep_both_join_attributes" value="false"/>
               </operator>
               <connect from_port="in 1" to_op="Join (22)" to_port="left"/>
-              <connect from_op="Retrieve areas-cientificas (2)" from_port="output" to_op="Rename (8)" to_port="example set input"/>
-              <connect from_op="Rename (8)" from_port="example set output" to_op="Join (22)" to_port="right"/>
+              <connect from_op="Retrieve areas-cientificas (2)" from_port="output" to_op="Rename (10)" to_port="example set input"/>
+              <connect from_op="Rename (10)" from_port="example set output" to_op="Join (22)" to_port="right"/>
               <connect from_op="Join (22)" from_port="join" to_port="out 1"/>
               <portSpacing port="source_in 1" spacing="0"/>
               <portSpacing port="source_in 2" spacing="0"/>
@@ -3002,7 +3014,7 @@
                 <parameter key="only_distinct" value="false"/>
                 <parameter key="ignore_missings" value="true"/>
               </operator>
-              <operator activated="true" class="rename" compatibility="8.2.000" expanded="true" height="82" name="Rename (10)" width="90" x="313" y="187">
+              <operator activated="true" class="rename" compatibility="8.2.000" expanded="true" height="82" name="Rename (12)" width="90" x="313" y="187">
                 <parameter key="old_name" value="count(UC_ID)"/>
                 <parameter key="new_name" value="NR_AULAS"/>
                 <list key="rename_additional_attributes"/>
@@ -3020,8 +3032,8 @@
               <connect from_port="in 1" to_op="Multiply (12)" to_port="input"/>
               <connect from_op="Multiply (12)" from_port="output 1" to_op="Join (26)" to_port="left"/>
               <connect from_op="Multiply (12)" from_port="output 2" to_op="Aggregate (9)" to_port="example set input"/>
-              <connect from_op="Aggregate (9)" from_port="example set output" to_op="Rename (10)" to_port="example set input"/>
-              <connect from_op="Rename (10)" from_port="example set output" to_op="Join (26)" to_port="right"/>
+              <connect from_op="Aggregate (9)" from_port="example set output" to_op="Rename (12)" to_port="example set input"/>
+              <connect from_op="Rename (12)" from_port="example set output" to_op="Join (26)" to_port="right"/>
               <connect from_op="Join (26)" from_port="join" to_port="out 1"/>
               <portSpacing port="source_in 1" spacing="0"/>
               <portSpacing port="source_in 2" spacing="0"/>
@@ -3247,7 +3259,7 @@
           <operator activated="true" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes (22)" width="90" x="2591" y="34">
             <parameter key="attribute_filter_type" value="subset"/>
             <parameter key="attribute" value=""/>
-            <parameter key="attributes" value="PRESENTE|ANOUC|AREA_CIENTIFICA|AULA_DATE|DURACAO|ID|INICIO_SEMANA|NR_AULAS_RESTANTES|NR_UCS|RAMO|REGIME|REGIMEUC|REPETENTE|USER_ID|Unidade Curricular"/>
+            <parameter key="attributes" value="PRESENTE|ANOUC|AREA_CIENTIFICA|AULA_DATE|DURACAO|ID|INICIO_SEMANA|NR_AULAS_RESTANTES|NR_UCS|RAMO|REGIME_TURNO|REPETENTE|USER_ID|Unidade Curricular"/>
             <parameter key="use_except_expression" value="false"/>
             <parameter key="value_type" value="attribute_value"/>
             <parameter key="use_value_type_exception" value="false"/>
