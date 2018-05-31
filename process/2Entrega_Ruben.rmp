@@ -3328,33 +3328,45 @@
         <list key="application_parameters"/>
         <parameter key="create_view" value="false"/>
       </operator>
-      <operator activated="true" class="rename" compatibility="8.2.000" expanded="true" height="82" name="Rename (6)" width="90" x="1117" y="493">
-        <parameter key="old_name" value="prediction(PRESENTE)"/>
-        <parameter key="new_name" value="PRESENTE"/>
-        <list key="rename_additional_attributes"/>
-      </operator>
-      <operator activated="true" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes (9)" width="90" x="1318" y="442">
-        <parameter key="attribute_filter_type" value="subset"/>
-        <parameter key="attribute" value=""/>
-        <parameter key="attributes" value="PRESENTE|ID"/>
-        <parameter key="use_except_expression" value="false"/>
-        <parameter key="value_type" value="attribute_value"/>
-        <parameter key="use_value_type_exception" value="false"/>
-        <parameter key="except_value_type" value="time"/>
-        <parameter key="block_type" value="attribute_block"/>
-        <parameter key="use_block_type_exception" value="false"/>
-        <parameter key="except_block_type" value="value_matrix_row_start"/>
-        <parameter key="invert_selection" value="false"/>
-        <parameter key="include_special_attributes" value="true"/>
-      </operator>
-      <operator activated="true" class="write_csv" compatibility="8.2.000" expanded="true" height="82" name="Write CSV" width="90" x="1452" y="391">
-        <parameter key="csv_file" value="/home/gaming/ricardomaltez@gmail.com/ComputerEngineering/3.ano/2-Semester/EngenhariaDeConhecimento/Projecto/previsao.csv"/>
-        <parameter key="column_separator" value=","/>
-        <parameter key="write_attribute_names" value="true"/>
-        <parameter key="quote_nominal_values" value="false"/>
-        <parameter key="format_date_attributes" value="true"/>
-        <parameter key="append_to_file" value="false"/>
-        <parameter key="encoding" value="SYSTEM"/>
+      <operator activated="true" class="subprocess" compatibility="8.2.000" expanded="true" height="82" name="Gerar CSV" width="90" x="1251" y="442">
+        <process expanded="true">
+          <operator activated="true" class="rename" compatibility="8.2.000" expanded="true" height="82" name="Rename (6)" width="90" x="45" y="136">
+            <parameter key="old_name" value="prediction(PRESENTE)"/>
+            <parameter key="new_name" value="PRESENTE"/>
+            <list key="rename_additional_attributes"/>
+          </operator>
+          <operator activated="true" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes (9)" width="90" x="246" y="85">
+            <parameter key="attribute_filter_type" value="subset"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value="PRESENTE|ID"/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="true"/>
+          </operator>
+          <operator activated="true" class="write_csv" compatibility="8.2.000" expanded="true" height="82" name="Write CSV" width="90" x="380" y="34">
+            <parameter key="csv_file" value="/home/gaming/ricardomaltez@gmail.com/ComputerEngineering/3.ano/2-Semester/EngenhariaDeConhecimento/Projecto/previsao.csv"/>
+            <parameter key="column_separator" value=","/>
+            <parameter key="write_attribute_names" value="true"/>
+            <parameter key="quote_nominal_values" value="false"/>
+            <parameter key="format_date_attributes" value="true"/>
+            <parameter key="append_to_file" value="false"/>
+            <parameter key="encoding" value="SYSTEM"/>
+          </operator>
+          <connect from_port="in 1" to_op="Rename (6)" to_port="example set input"/>
+          <connect from_op="Rename (6)" from_port="example set output" to_op="Select Attributes (9)" to_port="example set input"/>
+          <connect from_op="Select Attributes (9)" from_port="example set output" to_op="Write CSV" to_port="input"/>
+          <connect from_op="Select Attributes (9)" from_port="original" to_port="out 1"/>
+          <portSpacing port="source_in 1" spacing="0"/>
+          <portSpacing port="source_in 2" spacing="0"/>
+          <portSpacing port="sink_out 1" spacing="0"/>
+          <portSpacing port="sink_out 2" spacing="0"/>
+        </process>
       </operator>
       <connect from_op="retrieve class presences" from_port="out 1" to_op="Join (5)" to_port="left"/>
       <connect from_op="Retrieve T_TURNOS (2)" from_port="output" to_op="retrieve shift_users" to_port="in 1"/>
@@ -3383,11 +3395,9 @@
       <connect from_op="Multiply (11)" from_port="output 1" to_op="GERAR DATASET COMPLETO" to_port="in 2"/>
       <connect from_op="Generate (2)" from_port="out 1" to_op="Select Attributes (12)" to_port="example set input"/>
       <connect from_op="Select Attributes (12)" from_port="example set output" to_op="Apply Model" to_port="unlabelled data"/>
-      <connect from_op="Apply Model" from_port="labelled data" to_op="Rename (6)" to_port="example set input"/>
+      <connect from_op="Apply Model" from_port="labelled data" to_op="Gerar CSV" to_port="in 1"/>
       <connect from_op="Apply Model" from_port="model" to_port="result 3"/>
-      <connect from_op="Rename (6)" from_port="example set output" to_op="Select Attributes (9)" to_port="example set input"/>
-      <connect from_op="Select Attributes (9)" from_port="example set output" to_op="Write CSV" to_port="input"/>
-      <connect from_op="Select Attributes (9)" from_port="original" to_port="result 2"/>
+      <connect from_op="Gerar CSV" from_port="out 1" to_port="result 2"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="sink_result 1" spacing="336"/>
       <portSpacing port="sink_result 2" spacing="483"/>
