@@ -1468,12 +1468,6 @@
             <parameter key="X" value="false"/>
             <parameter key="A" value="weka.core.neighboursearch.LinearNNSearch -A &quot;weka.core.EuclideanDistance -R first-last&quot;"/>
           </operator>
-          <operator activated="false" class="weka:W-RandomForest" compatibility="7.3.000" expanded="true" height="82" name="W-RandomForest" width="90" x="45" y="136">
-            <parameter key="I" value="30.0"/>
-            <parameter key="K" value="20.0"/>
-            <parameter key="S" value="1.0"/>
-            <parameter key="D" value="false"/>
-          </operator>
           <operator activated="false" class="weka:W-DTNB" compatibility="7.3.000" expanded="true" height="82" name="W-DTNB" width="90" x="514" y="238">
             <parameter key="X" value="1.0"/>
             <parameter key="I" value="false"/>
@@ -1485,7 +1479,7 @@
             <parameter key="I" value="false"/>
             <parameter key="R" value="false"/>
           </operator>
-          <operator activated="false" class="weka:W-RandomTree" compatibility="7.3.000" expanded="true" height="82" name="W-RandomTree" width="90" x="45" y="289">
+          <operator activated="false" class="weka:W-RandomTree" compatibility="7.3.000" expanded="true" height="82" name="W-RandomTree" width="90" x="45" y="238">
             <parameter key="K" value="0.0"/>
             <parameter key="M" value="1.0"/>
             <parameter key="S" value="1.0"/>
@@ -1568,7 +1562,7 @@
               <portSpacing port="sink_model" spacing="0"/>
             </process>
           </operator>
-          <operator activated="false" class="concurrency:parallel_decision_tree" compatibility="8.2.000" expanded="true" height="103" name="Decision Tree (3)" width="90" x="179" y="34">
+          <operator activated="true" class="concurrency:parallel_decision_tree" compatibility="8.2.000" expanded="true" height="103" name="Decision Tree (3)" width="90" x="112" y="34">
             <parameter key="criterion" value="gain_ratio"/>
             <parameter key="maximal_depth" value="8"/>
             <parameter key="apply_pruning" value="true"/>
@@ -1579,7 +1573,7 @@
             <parameter key="minimal_size_for_split" value="4"/>
             <parameter key="number_of_prepruning_alternatives" value="3"/>
           </operator>
-          <operator activated="true" class="h2o:gradient_boosted_trees" compatibility="8.2.000" expanded="true" height="103" name="Gradient Boosted Trees (2)" width="90" x="313" y="340">
+          <operator activated="false" class="h2o:gradient_boosted_trees" compatibility="8.2.000" expanded="true" height="103" name="Gradient Boosted Trees (2)" width="90" x="380" y="391">
             <parameter key="number_of_trees" value="140"/>
             <parameter key="reproducible" value="false"/>
             <parameter key="maximum_number_of_threads" value="4"/>
@@ -1599,8 +1593,27 @@
             <parameter key="max_runtime_seconds" value="0"/>
             <list key="expert_parameters"/>
           </operator>
-          <connect from_port="training set" to_op="Gradient Boosted Trees (2)" to_port="training set"/>
-          <connect from_op="Gradient Boosted Trees (2)" from_port="model" to_port="model"/>
+          <operator activated="false" class="concurrency:parallel_random_forest" compatibility="8.2.000" expanded="true" height="103" name="Random Forest" width="90" x="246" y="646">
+            <parameter key="number_of_trees" value="10"/>
+            <parameter key="criterion" value="gain_ratio"/>
+            <parameter key="maximal_depth" value="8"/>
+            <parameter key="apply_pruning" value="true"/>
+            <parameter key="confidence" value="0.5"/>
+            <parameter key="apply_prepruning" value="false"/>
+            <parameter key="minimal_gain" value="0.1"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+            <parameter key="random_splits" value="false"/>
+            <parameter key="guess_subset_ratio" value="true"/>
+            <parameter key="subset_ratio" value="0.2"/>
+            <parameter key="voting_strategy" value="confidence vote"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="enable_parallel_execution" value="true"/>
+          </operator>
+          <connect from_port="training set" to_op="Decision Tree (3)" to_port="training set"/>
+          <connect from_op="Decision Tree (3)" from_port="model" to_port="model"/>
           <portSpacing port="source_training set" spacing="0"/>
           <portSpacing port="sink_model" spacing="0"/>
           <portSpacing port="sink_through 1" spacing="0"/>
