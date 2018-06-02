@@ -1930,8 +1930,8 @@
             <parameter key="min_rows" value="10.0"/>
             <parameter key="min_split_improvement" value="0.0"/>
             <parameter key="number_of_bins" value="20"/>
-            <parameter key="learning_rate" value="0.07"/>
-            <parameter key="sample_rate" value="0.89"/>
+            <parameter key="learning_rate" value="0.069"/>
+            <parameter key="sample_rate" value="0.9"/>
             <parameter key="distribution" value="AUTO"/>
             <parameter key="early_stopping" value="false"/>
             <parameter key="stopping_rounds" value="1"/>
